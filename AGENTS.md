@@ -1,0 +1,17 @@
+<!-- LOVABLE:BEGIN -->
+> [!IMPORTANT]
+> This project is connected to [Lovable](https://lovable.dev). Avoid rewriting
+> published git history — force pushing, or rebasing/amending/squashing commits
+> that are already pushed — as it rewrites history on Lovable's side and the
+> user will likely lose their project history.
+>
+> Commits you push to the connected branch sync back to Lovable and show up in
+> the editor, so keep the branch in a working state.
+<!-- LOVABLE:END -->
+
+- Keep the daily tracker browser-local in the static GitHub Pages build; no account or server exists to sync entries between devices.
+- Host the static app through the GitHub Pages workflow with the repository base path; TanStack Start's server output is not the Pages artifact.
+- Use an absolute published asset URL for the About portrait so GitHub Pages can display it outside the origin-specific relative asset path namespace.
+- The GitHub Pages SPA build skips the root html/head shell (VITE_STATIC_SPA define); rendering <html> plus HeadContent inside #root freezes the page.
+- Theme switching applies semantic CSS tokens through the document dark class and saves only the theme preference locally, so the same control works in hosted and static Pages builds without altering tracker data.
+- Prayer alerts use public/notify-sw.js, a notification-only worker that caches nothing, so installs never serve stale pages; alerts are scheduled in the open app because static Pages has no push server.
