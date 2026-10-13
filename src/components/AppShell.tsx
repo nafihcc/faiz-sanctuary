@@ -9,11 +9,11 @@ import { ContributeSection } from "@/components/ContributeSection";
 
 const NAV = [
   { to: "/", label: "Prayer Times" },
+  { to: "/qibla", label: "Qibla" },
   { to: "/quran", label: "Quran" },
   { to: "/masjid", label: "Masajid" },
   { to: "/asmaul-husna", label: "99 Names" },
   { to: "/duas", label: "Adhkar & Duas" },
-  { to: "/qibla", label: "Qibla" },
   { to: "/dhikr", label: "Dhikr" },
   { to: "/tracker", label: "Tracker" },
   { to: "/calendar", label: "Calendar" },
@@ -27,17 +27,16 @@ export function AppShell({ children }: { children: ReactNode }) {
     <div className="relative min-h-screen bg-surface overflow-hidden">
       <IslamicCelestialBackground />
       <header className="relative z-10 px-4 sm:px-6 py-5 flex items-center justify-between gap-2 sm:gap-4 max-w-7xl mx-auto">
-        <Link to="/" className="flex items-center gap-3 group">
-          <div className="w-9 h-9 rounded-xl bg-brand/90 grid place-items-center text-primary-foreground font-arabic font-bold text-lg shadow-lg shadow-brand/20">
-            ش
+        <Link to="/" className="flex items-center gap-3">
+          <div className="w-9 h-9 rounded-full bg-brand grid place-items-center text-primary-foreground font-display font-bold shadow-md shadow-brand/20">
+            S
           </div>
-          <div className="flex items-baseline gap-2">
-            <span className="text-lg font-semibold text-deep tracking-tight font-display">Shareek</span>
-            <span className="text-xs font-arabic text-brand/80">شَرِيك</span>
-            <span className="hidden sm:inline text-[10px] uppercase tracking-[0.2em] text-brand/60 ml-1">
-              Prayer · Quran · Sunnah
-            </span>
-          </div>
+          <span className="text-lg font-semibold text-deep tracking-tight font-display">
+            Shareek
+          </span>
+          <span className="hidden sm:inline text-[10px] uppercase tracking-[0.2em] text-brand/60 mt-0.5">
+            شَرِيك · Prayer &amp; Quran
+          </span>
         </Link>
 
         <nav className="hidden lg:flex items-center gap-5 text-sm font-medium text-deep/70">
@@ -59,20 +58,23 @@ export function AppShell({ children }: { children: ReactNode }) {
           <ThemeToggle />
           <a
             href="#contribute"
-            className="hidden md:inline text-sm font-semibold text-deep/70 hover:text-brand transition whitespace-nowrap"
+            className="hidden xl:inline text-sm font-semibold text-deep/70 hover:text-brand transition whitespace-nowrap"
           >
             Contribute
           </a>
-          <Link to="/about" className="text-sm font-semibold text-brand hover:text-deep transition whitespace-nowrap">
+          <Link
+            to="/about"
+            className="text-sm font-semibold text-brand hover:text-deep transition whitespace-nowrap"
+          >
             About
           </Link>
-          <span className="hidden sm:inline text-xs font-medium text-deep/60 bg-panel/60 backdrop-blur-md px-3 py-2 rounded-xl border border-hairline">
+          <span className="hidden sm:inline text-xs font-medium text-deep/65 bg-panel/80 backdrop-blur-md px-3.5 py-2 rounded-full border border-hairline shadow-2xs">
             {location.name}
             {location.region ? `, ${location.region}` : ""}
           </span>
           <button
             onClick={() => setOpen(true)}
-            className="bg-brand text-primary-foreground text-xs sm:text-sm font-semibold px-3 sm:px-4 py-2.5 rounded-xl shadow-lg shadow-brand/25 hover:bg-deep transition whitespace-nowrap"
+            className="bg-brand text-primary-foreground text-xs sm:text-sm font-semibold px-4 py-2.5 rounded-full shadow-md shadow-brand/20 hover:bg-deep transition whitespace-nowrap cursor-pointer"
           >
             Set Location
           </button>
@@ -85,12 +87,18 @@ export function AppShell({ children }: { children: ReactNode }) {
 
       <footer className="relative z-10 max-w-7xl mx-auto px-6 py-10 flex flex-col sm:flex-row items-start sm:items-center justify-between gap-3 text-xs text-deep/50">
         <p>
-          Shareek (شَرِيك) · Prayer times, Quran, Masajid, 99 Names, Adhkar, Qibla, and daily worship tracker in one place.
+          Shareek (شَرِيك) · prayer times, Quran, Masajid, 99 Names, Adhkar, Qibla, dhikr and a daily worship tracker in one place.
         </p>
         <div className="flex gap-5">
-          <a href="#contribute" className="font-semibold text-brand hover:text-deep transition">Contribute</a>
-          <Link to="/about" className="font-semibold text-brand hover:text-deep transition">About</Link>
-          <Link to="/methodology" className="font-semibold text-brand hover:text-deep transition">View methodology →</Link>
+          <a href="#contribute" className="font-semibold text-brand hover:text-deep transition">
+            Contribute
+          </a>
+          <Link to="/about" className="font-semibold text-brand hover:text-deep transition">
+            About
+          </Link>
+          <Link to="/methodology" className="font-semibold text-brand hover:text-deep transition">
+            View methodology →
+          </Link>
         </div>
       </footer>
 

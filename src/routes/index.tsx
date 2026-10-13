@@ -86,14 +86,14 @@ function Home() {
       >
         {(
           [
-            { to: "/quran", icon: "📖", title: "Quran", sub: "Mushaf & audio" },
-            { to: "/masjid", icon: "🕌", title: "Masajid", sub: "Spatial radar" },
-            { to: "/asmaul-husna", icon: "✨", title: "99 Names", sub: "Asmaul Husna" },
-            { to: "/duas", icon: "🤲", title: "Adhkar & Duas", sub: "Hisn al-Muslim" },
-            { to: "/qibla", icon: "🧭", title: "Qibla", sub: "Compass bearing" },
-            { to: "/dhikr", icon: "📿", title: "Dhikr", sub: "Tally counter" },
-            { to: "/tracker", icon: "📊", title: "Tracker", sub: "Daily checklist" },
-            { to: "/calendar", icon: "🗓️", title: "Timetable", sub: "PDF & CSV export" },
+            { to: "/quran", icon: "📖", title: "Quran", sub: "Mushaf & audio", tint: "bg-sky-50 text-sky-700" },
+            { to: "/masjid", icon: "🕌", title: "Masajid", sub: "Spatial radar", tint: "bg-cyan-50 text-cyan-800" },
+            { to: "/asmaul-husna", icon: "✨", title: "99 Names", sub: "Asmaul Husna", tint: "bg-amber-50 text-amber-800" },
+            { to: "/duas", icon: "🤲", title: "Adhkar & Duas", sub: "Hisn al-Muslim", tint: "bg-rose-50 text-rose-700" },
+            { to: "/qibla", icon: "🧭", title: "Qibla", sub: "Compass bearing", tint: "bg-orange-50 text-orange-700" },
+            { to: "/dhikr", icon: "📿", title: "Dhikr", sub: "Tally counter", tint: "bg-purple-50 text-purple-700" },
+            { to: "/tracker", icon: "📊", title: "Tracker", sub: "Daily checklist", tint: "bg-indigo-50 text-indigo-700" },
+            { to: "/calendar", icon: "🗓️", title: "Timetable", sub: "Monthly times", tint: "bg-blue-50 text-blue-700" },
           ] as const
         ).map((t) => (
           <motion.div 
@@ -105,14 +105,14 @@ function Home() {
           >
             <Link
               to={t.to}
-              className="glass-panel group relative block h-full rounded-2xl p-4 flex flex-col justify-center gap-3 shadow-sm hover:shadow-xl hover:border-brand/30 transition-all overflow-hidden"
+              className="glass-panel group relative block h-full rounded-3xl p-4 sm:p-5 flex flex-col justify-center gap-3 shadow-2xs hover:shadow-lg hover:border-brand/30 transition-all overflow-hidden"
             >
-              <div className="absolute inset-0 bg-gradient-to-br from-brand/10 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300 pointer-events-none" />
-              <span className="text-2xl w-11 h-11 rounded-xl bg-mist/90 grid place-items-center group-hover:scale-110 group-hover:shadow-md transition-all">
+              <div className="absolute inset-0 bg-gradient-to-br from-brand/5 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300 pointer-events-none" />
+              <span className={`text-2xl w-11 h-11 rounded-full ${t.tint} grid place-items-center group-hover:scale-110 shadow-2xs transition-all`}>
                 {t.icon}
               </span>
               <span className="relative z-10">
-                <span className="block font-semibold text-deep font-display group-hover:text-brand transition-colors">
+                <span className="block font-semibold text-deep font-display group-hover:text-brand transition-colors text-sm sm:text-base">
                   {t.title}
                 </span>
                 <span className="block text-[11px] text-deep/55">{t.sub}</span>
@@ -246,7 +246,7 @@ function Home() {
                     }`}
                   >
                     <div
-                      className={`w-10 h-10 rounded-2xl grid place-items-center text-base ${
+                      className={`w-10 h-10 rounded-full grid place-items-center text-base ${
                         key === "maghrib" ? "bg-brand/15" : "bg-mist"
                       }`}
                     >
