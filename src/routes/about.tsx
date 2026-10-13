@@ -8,10 +8,10 @@ const portraitUrl = `https://shereeq.lovable.app${portrait.url}`;
 export const Route = createFileRoute("/about")({
   head: () => ({
     meta: [
-      { title: "About Mohammed Nafih C C | Siraj" },
-      { name: "description", content: "Meet Mohammed Nafih C C, the person behind Siraj. Get in touch on WhatsApp." },
-      { property: "og:title", content: "About Mohammed Nafih C C | Siraj" },
-      { property: "og:description", content: "Meet Mohammed Nafih C C, the person behind Siraj. Get in touch on WhatsApp." },
+      { title: "About Mohammed Nafih C C | Shareek" },
+      { name: "description", content: "Meet Mohammed Nafih C C, the person behind Shareek. Get in touch on WhatsApp." },
+      { property: "og:title", content: "About Mohammed Nafih C C | Shareek" },
+      { property: "og:description", content: "Meet Mohammed Nafih C C, the person behind Shareek. Get in touch on WhatsApp." },
       { property: "og:image", content: portraitUrl },
       { name: "twitter:image", content: portraitUrl },
       { property: "og:type", content: "profile" },
@@ -25,7 +25,7 @@ function AboutPage() {
   return (
     <main className="max-w-6xl mx-auto px-6 pt-10 pb-20">
       <div className="border-t border-deep/15 pt-5 flex items-center justify-between text-xs font-semibold uppercase text-brand">
-        <span>Siraj / About</span>
+        <span>Shareek / About</span>
         <span>01 — The person behind it</span>
       </div>
       <div className="mt-10 grid md:grid-cols-[minmax(0,1fr)_minmax(0,0.9fr)] gap-10 lg:gap-16 items-start">
@@ -36,7 +36,7 @@ function AboutPage() {
           </h1>
           <div className="mt-8 w-16 h-px bg-gold" />
           <p className="mt-8 text-lg leading-relaxed text-deep/70 max-w-lg">
-            The person behind Siraj — a place for prayer times, Quran reading, finding the Qibla and keeping up with daily dhikr.
+            The person behind Shareek — a place for prayer times, Quran reading, finding the Qibla and keeping up with daily dhikr.
           </p>
           <a
             href="https://wa.me/919048291729"

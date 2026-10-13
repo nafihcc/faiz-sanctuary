@@ -7,17 +7,26 @@ import {
   Code2,
   Share2,
   Check,
+  Copy,
   ArrowUpRight,
   MessageCircle,
   Sparkles,
   Send,
+  QrCode,
+  Smartphone,
   X,
 } from "lucide-react";
 
 type ContributionType = "masjid" | "sunnah" | "sadaqah" | "code";
 
+const UPI_ID = "nafihcc1234-2@okcici";
+const UPI_PAYEE_NAME = "Mohammed Nafih C C";
+const UPI_URI = `upi://pay?pa=${UPI_ID}&pn=${encodeURIComponent(UPI_PAYEE_NAME)}&tn=${encodeURIComponent("Shareek Sadaqah Jariyah Support")}&cu=INR`;
+const UPI_QR_URL = `https://api.qrserver.com/v1/create-qr-code/?size=240x240&margin=12&color=0a261e&bgcolor=faf8f5&data=${encodeURIComponent(UPI_URI)}`;
+
 export function ContributeSection() {
-  const [copied, setCopied] = useState(false);
+  const [copiedShare, setCopiedShare] = useState(false);
+  const [copiedUpi, setCopiedUpi] = useState(false);
   const [activeModal, setActiveModal] = useState<ContributionType | null>(null);
   const [formName, setFormName] = useState("");
   const [formLocation, setFormLocation] = useState("");
@@ -27,8 +36,18 @@ export function ContributeSection() {
     const shareUrl = window.location.origin + window.location.pathname;
     try {
       await navigator.clipboard.writeText(shareUrl);
-      setCopied(true);
-      setTimeout(() => setCopied(false), 2500);
+      setCopiedShare(true);
+      setTimeout(() => setCopiedShare(false), 2500);
+    } catch {
+      // Fallback
+    }
+  };
+
+  const handleCopyUpi = async () => {
+    try {
+      await navigator.clipboard.writeText(UPI_ID);
+      setCopiedUpi(true);
+      setTimeout(() => setCopiedUpi(false), 2500);
     } catch {
       // Fallback
     }
@@ -44,7 +63,7 @@ export function ContributeSection() {
     };
     const label = activeModal ? typeLabels[activeModal] : "Community Contribution";
     const text = [
-      `Assalamu Alaikum! I would like to contribute to *Siraj* (${label}):`,
+      `Assalamu Alaikum! I would like to contribute to *Shareek (شريك)* (${label}):`,
       formName ? `• Name / Title: ${formName}` : "",
       formLocation ? `• City / Coordinates: ${formLocation}` : "",
       formDetails ? `• Details: ${formDetails}` : "",
@@ -90,8 +109,8 @@ export function ContributeSection() {
               </div>
 
               <h2 className="mt-4 text-3xl sm:text-4xl lg:text-5xl font-display font-semibold tracking-tight text-white leading-[1.1]">
-                Built for the Ummah.{" "}
-                <span className="text-[#e6c875]">Contribute & Share the Reward.</span>
+                Contribute to Shareek{" "}
+                <span className="font-arabic text-[#e6c875] font-normal">(شَرِيك)</span>
               </h2>
 
               <p className="mt-3 text-sm sm:text-base text-white/75 leading-relaxed">
@@ -107,7 +126,7 @@ export function ContributeSection() {
                 onClick={handleCopyShare}
                 className="inline-flex items-center gap-2 px-4 py-3 rounded-xl bg-white/10 hover:bg-white/15 border border-white/15 text-xs sm:text-sm font-semibold text-white transition cursor-pointer"
               >
-                {copied ? (
+                {copiedShare ? (
                   <>
                     <Check className="w-4 h-4 text-[#e6c875]" />
                     <span>Link Copied — Share with Family</span>
@@ -115,27 +134,82 @@ export function ContributeSection() {
                 ) : (
                   <>
                     <Share2 className="w-4 h-4 text-[#e6c875]" />
-                    <span>Share Siraj</span>
+                    <span>Share Shareek</span>
                   </>
                 )}
               </button>
 
-              <a
-                href="https://wa.me/919048291729?text=Assalamu%20Alaikum%2C%20I%20would%20like%20to%20contribute%20to%20Siraj"
-                target="_blank"
-                rel="noopener noreferrer"
-                className="inline-flex items-center gap-2 px-5 py-3 rounded-xl bg-gradient-to-r from-[#c5a059] to-[#d4af37] text-[#0a261e] text-xs sm:text-sm font-semibold shadow-lg shadow-[#c5a059]/20 hover:brightness-105 transition"
+              <button
+                onClick={() => setActiveModal("sadaqah")}
+                className="inline-flex items-center gap-2 px-5 py-3 rounded-xl bg-gradient-to-r from-[#c5a059] to-[#d4af37] text-[#0a261e] text-xs sm:text-sm font-semibold shadow-lg shadow-[#c5a059]/20 hover:brightness-105 transition cursor-pointer"
               >
-                <MessageCircle className="w-4 h-4" />
-                <span>Direct WhatsApp</span>
+                <QrCode className="w-4 h-4" />
+                <span>Support via UPI</span>
                 <ArrowUpRight className="w-4 h-4" />
-              </a>
+              </button>
             </div>
           </div>
 
           {/* 4 Contribution Cards */}
           <div className="mt-8 grid sm:grid-cols-2 lg:grid-cols-4 gap-4">
-            {/* 1. Submit Masjid */}
+            {/* 1. Sadaqah Jariyah UPI Support */}
+            <motion.div
+              whileHover={{ y: -4 }}
+              className="rounded-2xl p-5 bg-gradient-to-b from-[#d4af37]/[0.14] to-white/[0.05] border border-[#d4af37]/40 transition flex flex-col justify-between shadow-lg"
+            >
+              <div>
+                <div className="flex items-center justify-between gap-2">
+                  <div className="w-10 h-10 rounded-xl bg-[#d4af37]/25 border border-[#d4af37]/40 grid place-items-center text-[#e6c875]">
+                    <HeartHandshake className="w-5 h-5" />
+                  </div>
+                  <span className="text-[10px] font-mono uppercase tracking-widest px-2.5 py-1 rounded-full bg-[#d4af37]/20 text-[#e6c875] border border-[#d4af37]/30">
+                    UPI · Sadaqah
+                  </span>
+                </div>
+                <h3 className="mt-4 text-lg font-display font-semibold text-white">
+                  Support as Sadaqah Jariyah
+                </h3>
+                <p className="mt-1.5 text-xs text-white/75 leading-relaxed">
+                  Help keep Shareek 100% ad-free and openly accessible. Support server & audio
+                  hosting directly via UPI:
+                </p>
+
+                {/* Inline Copyable UPI Badge */}
+                <div className="mt-3 flex items-center justify-between gap-2 px-3 py-2 rounded-xl bg-black/25 border border-white/15">
+                  <span className="text-xs font-mono text-[#e6c875] truncate select-all">
+                    {UPI_ID}
+                  </span>
+                  <button
+                    type="button"
+                    onClick={handleCopyUpi}
+                    className="inline-flex items-center gap-1 text-[11px] font-mono font-semibold text-white/80 hover:text-[#e6c875] transition shrink-0 cursor-pointer"
+                    title="Copy UPI ID"
+                  >
+                    {copiedUpi ? (
+                      <>
+                        <Check className="w-3.5 h-3.5 text-emerald-400" />
+                        <span className="text-emerald-300">Copied</span>
+                      </>
+                    ) : (
+                      <>
+                        <Copy className="w-3.5 h-3.5" />
+                        <span>Copy</span>
+                      </>
+                    )}
+                  </button>
+                </div>
+              </div>
+
+              <button
+                onClick={() => setActiveModal("sadaqah")}
+                className="mt-4 w-full py-2.5 px-3 rounded-xl bg-gradient-to-r from-[#c5a059] to-[#d4af37] text-[#0a261e] text-xs font-semibold shadow-md hover:brightness-105 transition flex items-center justify-center gap-1.5 cursor-pointer"
+              >
+                <QrCode className="w-3.5 h-3.5" />
+                <span>Scan QR / Pay via UPI</span>
+              </button>
+            </motion.div>
+
+            {/* 2. Submit Masjid */}
             <motion.div
               whileHover={{ y: -4 }}
               className="rounded-2xl p-5 bg-white/[0.06] hover:bg-white/[0.1] border border-white/10 hover:border-[#d4af37]/40 transition flex flex-col justify-between"
@@ -161,7 +235,7 @@ export function ContributeSection() {
               </button>
             </motion.div>
 
-            {/* 2. Verify Adhkar & Translations */}
+            {/* 3. Verify Adhkar & Translations */}
             <motion.div
               whileHover={{ y: -4 }}
               className="rounded-2xl p-5 bg-white/[0.06] hover:bg-white/[0.1] border border-white/10 hover:border-[#d4af37]/40 transition flex flex-col justify-between"
@@ -183,32 +257,6 @@ export function ContributeSection() {
                 className="mt-5 w-full py-2.5 px-3 rounded-xl bg-white/10 hover:bg-[#d4af37] hover:text-[#0a261e] text-xs font-semibold text-[#e6c875] transition flex items-center justify-center gap-1.5 cursor-pointer"
               >
                 <span>Suggest or Review Text</span>
-                <ArrowUpRight className="w-3.5 h-3.5" />
-              </button>
-            </motion.div>
-
-            {/* 3. Sadaqah Jariyah Support */}
-            <motion.div
-              whileHover={{ y: -4 }}
-              className="rounded-2xl p-5 bg-white/[0.06] hover:bg-white/[0.1] border border-white/10 hover:border-[#d4af37]/40 transition flex flex-col justify-between"
-            >
-              <div>
-                <div className="w-10 h-10 rounded-xl bg-[#d4af37]/20 border border-[#d4af37]/30 grid place-items-center text-[#e6c875]">
-                  <HeartHandshake className="w-5 h-5" />
-                </div>
-                <h3 className="mt-4 text-lg font-display font-semibold text-white">
-                  Support & Sponsor
-                </h3>
-                <p className="mt-1.5 text-xs text-white/70 leading-relaxed">
-                  Siraj is 100% free, ad-free, and privacy-first. Support server hosting, Quran audio
-                  bandwidth, and ongoing development as Sadaqah Jariyah.
-                </p>
-              </div>
-              <button
-                onClick={() => setActiveModal("sadaqah")}
-                className="mt-5 w-full py-2.5 px-3 rounded-xl bg-gradient-to-r from-[#c5a059]/30 to-[#d4af37]/30 hover:from-[#c5a059] hover:to-[#d4af37] border border-[#d4af37]/40 hover:text-[#0a261e] text-xs font-semibold text-[#e6c875] transition flex items-center justify-center gap-1.5 cursor-pointer"
-              >
-                <span>Support the Project</span>
                 <ArrowUpRight className="w-3.5 h-3.5" />
               </button>
             </motion.div>
@@ -264,104 +312,171 @@ export function ContributeSection() {
               <div className="flex items-start justify-between gap-4">
                 <div>
                   <span className="text-[10px] font-mono uppercase tracking-[0.2em] text-[#c5a059] font-semibold">
-                    Community Contribution
+                    {activeModal === "sadaqah" ? "Sadaqah Jariyah · صَدَقَة جَارِيَة" : "Community Contribution"}
                   </span>
                   <h3 className="mt-1 text-2xl font-display font-semibold text-deep">
                     {activeModal === "masjid" && "Submit or Verify a Masjid"}
                     {activeModal === "sunnah" && "Suggest Adhkar or Correction"}
-                    {activeModal === "sadaqah" && "Support Siraj (Sadaqah Jariyah)"}
+                    {activeModal === "sadaqah" && "Support Shareek via UPI"}
                     {activeModal === "code" && "Join as a Contributor"}
                   </h3>
                 </div>
                 <button
                   onClick={() => setActiveModal(null)}
-                  className="p-2 rounded-full hover:bg-mist text-deep/60 hover:text-deep transition"
+                  className="p-2 rounded-full hover:bg-mist text-deep/60 hover:text-deep transition cursor-pointer"
                 >
                   <X className="w-5 h-5" />
                 </button>
               </div>
 
-              <form onSubmit={handleWhatsAppSubmit} className="mt-5 space-y-4">
-                <div>
-                  <label className="block text-xs font-semibold uppercase tracking-wider text-deep/70 mb-1.5">
-                    {activeModal === "masjid"
-                      ? "Masjid Name"
-                      : activeModal === "sunnah"
-                      ? "Your Name & Reference Source"
-                      : "Your Name (Optional)"}
-                  </label>
-                  <input
-                    type="text"
-                    required={activeModal === "masjid"}
-                    value={formName}
-                    onChange={(e) => setFormName(e.target.value)}
-                    placeholder={
-                      activeModal === "masjid"
-                        ? "e.g., Mishkal Masjid, Kuttichira"
-                        : "Enter name or Hadith reference..."
-                    }
-                    className="w-full rounded-xl bg-panel border border-hairline px-3.5 py-2.5 text-sm text-deep focus:outline-none focus:border-[#c5a059]"
-                  />
-                </div>
+              {activeModal === "sadaqah" ? (
+                <div className="mt-6 space-y-5">
+                  <div className="rounded-2xl bg-panel border border-hairline p-5 flex flex-col items-center text-center">
+                    <div className="p-3 rounded-2xl bg-white border border-[#c5a059]/30 shadow-md">
+                      <img
+                        src={UPI_QR_URL}
+                        alt={`UPI QR Code for ${UPI_ID}`}
+                        className="w-44 h-44 rounded-lg object-contain"
+                      />
+                    </div>
+                    <p className="mt-3 text-xs font-semibold uppercase tracking-wider text-deep/50">
+                      Scan with Google Pay, PhonePe, Paytm or any UPI App
+                    </p>
+                    <p className="mt-1 text-sm font-semibold text-deep font-display">
+                      {UPI_PAYEE_NAME}
+                    </p>
 
-                <div>
-                  <label className="block text-xs font-semibold uppercase tracking-wider text-deep/70 mb-1.5">
-                    {activeModal === "masjid"
-                      ? "City / Google Maps Link / Coordinates"
-                      : activeModal === "sunnah"
-                      ? "Category (e.g., Masjid, Morning/Evening, Translation)"
-                      : "Contribution Area"}
-                  </label>
-                  <input
-                    type="text"
-                    value={formLocation}
-                    onChange={(e) => setFormLocation(e.target.value)}
-                    placeholder={
-                      activeModal === "masjid"
-                        ? "e.g., Kozhikode, Kerala or Google Maps URL"
-                        : "e.g., Malayalam translation / Server sponsorship"
-                    }
-                    className="w-full rounded-xl bg-panel border border-hairline px-3.5 py-2.5 text-sm text-deep focus:outline-none focus:border-[#c5a059]"
-                  />
-                </div>
+                    <div className="mt-4 w-full flex items-center justify-between gap-2 px-4 py-3 rounded-xl bg-mist/70 border border-hairline">
+                      <div className="text-left">
+                        <span className="block text-[10px] uppercase tracking-wider text-deep/50 font-mono">
+                          UPI ID
+                        </span>
+                        <span className="text-sm font-mono font-semibold text-deep select-all">
+                          {UPI_ID}
+                        </span>
+                      </div>
+                      <button
+                        type="button"
+                        onClick={handleCopyUpi}
+                        className="inline-flex items-center gap-1.5 px-3.5 py-2 rounded-xl bg-gradient-to-r from-[#0c3b2e] to-[#155e42] text-[#e6c875] text-xs font-semibold shadow-sm hover:brightness-110 transition cursor-pointer"
+                      >
+                        {copiedUpi ? (
+                          <>
+                            <Check className="w-3.5 h-3.5" />
+                            <span>Copied!</span>
+                          </>
+                        ) : (
+                          <>
+                            <Copy className="w-3.5 h-3.5" />
+                            <span>Copy UPI ID</span>
+                          </>
+                        )}
+                      </button>
+                    </div>
+                  </div>
 
-                <div>
-                  <label className="block text-xs font-semibold uppercase tracking-wider text-deep/70 mb-1.5">
-                    {activeModal === "masjid"
-                      ? "Jumu'ah Time & Facilities (Wudu, Women's space, Parking)"
-                      : "Details / Message"}
-                  </label>
-                  <textarea
-                    rows={3}
-                    required
-                    value={formDetails}
-                    onChange={(e) => setFormDetails(e.target.value)}
-                    placeholder={
-                      activeModal === "masjid"
-                        ? "e.g., Jumu'ah Khutbah at 12:30 PM, ample parking..."
-                        : "Share the details of your contribution..."
-                    }
-                    className="w-full rounded-xl bg-panel border border-hairline px-3.5 py-2.5 text-sm text-deep focus:outline-none focus:border-[#c5a059]"
-                  />
+                  <div className="grid sm:grid-cols-2 gap-3">
+                    <a
+                      href={UPI_URI}
+                      className="inline-flex items-center justify-center gap-2 py-3 px-4 rounded-xl bg-gradient-to-r from-[#c5a059] to-[#d4af37] text-[#0a261e] text-xs font-semibold shadow-md hover:brightness-105 transition"
+                    >
+                      <Smartphone className="w-4 h-4" />
+                      <span>Open UPI App Directly</span>
+                    </a>
+                    <a
+                      href="https://wa.me/919048291729?text=Assalamu%20Alaikum%2C%20I%20contributed%20to%20Shareek%20via%20UPI"
+                      target="_blank"
+                      rel="noopener noreferrer"
+                      className="inline-flex items-center justify-center gap-2 py-3 px-4 rounded-xl border border-hairline bg-panel hover:bg-mist text-deep text-xs font-semibold transition"
+                    >
+                      <MessageCircle className="w-4 h-4 text-[#155e42]" />
+                      <span>Message on WhatsApp</span>
+                    </a>
+                  </div>
                 </div>
+              ) : (
+                <form onSubmit={handleWhatsAppSubmit} className="mt-5 space-y-4">
+                  <div>
+                    <label className="block text-xs font-semibold uppercase tracking-wider text-deep/70 mb-1.5">
+                      {activeModal === "masjid"
+                        ? "Masjid Name"
+                        : activeModal === "sunnah"
+                        ? "Your Name & Reference Source"
+                        : "Your Name (Optional)"}
+                    </label>
+                    <input
+                      type="text"
+                      required={activeModal === "masjid"}
+                      value={formName}
+                      onChange={(e) => setFormName(e.target.value)}
+                      placeholder={
+                        activeModal === "masjid"
+                          ? "e.g., Mishkal Masjid, Kuttichira"
+                          : "Enter name or Hadith reference..."
+                      }
+                      className="w-full rounded-xl bg-panel border border-hairline px-3.5 py-2.5 text-sm text-deep focus:outline-none focus:border-[#c5a059]"
+                    />
+                  </div>
 
-                <div className="pt-2 flex items-center justify-end gap-3">
-                  <button
-                    type="button"
-                    onClick={() => setActiveModal(null)}
-                    className="px-4 py-2.5 rounded-xl border border-hairline text-xs font-semibold text-deep/70 hover:bg-mist transition"
-                  >
-                    Cancel
-                  </button>
-                  <button
-                    type="submit"
-                    className="inline-flex items-center gap-2 px-5 py-2.5 rounded-xl bg-gradient-to-r from-[#0c3b2e] to-[#155e42] text-[#e6c875] text-xs font-semibold shadow-md hover:brightness-110 transition cursor-pointer"
-                  >
-                    <Send className="w-3.5 h-3.5" />
-                    <span>Send Contribution via WhatsApp</span>
-                  </button>
-                </div>
-              </form>
+                  <div>
+                    <label className="block text-xs font-semibold uppercase tracking-wider text-deep/70 mb-1.5">
+                      {activeModal === "masjid"
+                        ? "City / Google Maps Link / Coordinates"
+                        : activeModal === "sunnah"
+                        ? "Category (e.g., Masjid, Morning/Evening, Translation)"
+                        : "Contribution Area"}
+                    </label>
+                    <input
+                      type="text"
+                      value={formLocation}
+                      onChange={(e) => setFormLocation(e.target.value)}
+                      placeholder={
+                        activeModal === "masjid"
+                          ? "e.g., Kozhikode, Kerala or Google Maps URL"
+                          : "e.g., Malayalam translation / Hadith verification"
+                      }
+                      className="w-full rounded-xl bg-panel border border-hairline px-3.5 py-2.5 text-sm text-deep focus:outline-none focus:border-[#c5a059]"
+                    />
+                  </div>
+
+                  <div>
+                    <label className="block text-xs font-semibold uppercase tracking-wider text-deep/70 mb-1.5">
+                      {activeModal === "masjid"
+                        ? "Jumu'ah Time & Facilities (Wudu, Women's space, Parking)"
+                        : "Details / Message"}
+                    </label>
+                    <textarea
+                      rows={3}
+                      required
+                      value={formDetails}
+                      onChange={(e) => setFormDetails(e.target.value)}
+                      placeholder={
+                        activeModal === "masjid"
+                          ? "e.g., Jumu'ah Khutbah at 12:30 PM, ample parking..."
+                          : "Share the details of your contribution..."
+                      }
+                      className="w-full rounded-xl bg-panel border border-hairline px-3.5 py-2.5 text-sm text-deep focus:outline-none focus:border-[#c5a059]"
+                    />
+                  </div>
+
+                  <div className="pt-2 flex items-center justify-end gap-3">
+                    <button
+                      type="button"
+                      onClick={() => setActiveModal(null)}
+                      className="px-4 py-2.5 rounded-xl border border-hairline text-xs font-semibold text-deep/70 hover:bg-mist transition cursor-pointer"
+                    >
+                      Cancel
+                    </button>
+                    <button
+                      type="submit"
+                      className="inline-flex items-center gap-2 px-5 py-2.5 rounded-xl bg-gradient-to-r from-[#0c3b2e] to-[#155e42] text-[#e6c875] text-xs font-semibold shadow-md hover:brightness-110 transition cursor-pointer"
+                    >
+                      <Send className="w-3.5 h-3.5" />
+                      <span>Send Contribution via WhatsApp</span>
+                    </button>
+                  </div>
+                </form>
+              )}
             </motion.div>
           </motion.div>
         )}

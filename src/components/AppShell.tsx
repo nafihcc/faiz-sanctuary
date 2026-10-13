@@ -29,13 +29,13 @@ export function AppShell({ children }: { children: ReactNode }) {
       <header className="relative z-10 px-4 sm:px-6 py-5 flex items-center justify-between gap-2 sm:gap-4 max-w-7xl mx-auto border-b border-hairline/70">
         <Link to="/" className="flex items-center gap-3 group">
           <div className="w-10 h-10 rounded-xl bg-gradient-to-br from-[#0c3b2e] to-[#155e42] grid place-items-center text-[#d4af37] font-display font-bold shadow-md ring-1 ring-[#c5a059]/40 group-hover:ring-[#d4af37] transition-all">
-            س
+            ش
           </div>
           <div>
             <div className="flex items-center gap-2">
-              <span className="text-lg font-semibold text-deep tracking-tight font-display">Siraj</span>
+              <span className="text-lg font-semibold text-deep tracking-tight font-display">Shareek</span>
               <span className="text-[10px] tracking-wider px-1.5 py-0.5 rounded-sm bg-[#c5a059]/15 text-[#c5a059] font-arabic font-medium">
-                سِرَاج
+                شَرِيك
               </span>
             </div>
             <span className="hidden sm:block text-[10px] uppercase tracking-[0.18em] text-deep/50 font-mono">
@@ -86,7 +86,7 @@ export function AppShell({ children }: { children: ReactNode }) {
 
       <footer className="relative z-10 max-w-7xl mx-auto px-6 py-10 flex flex-col sm:flex-row items-start sm:items-center justify-between gap-3 text-xs text-deep/50 border-t border-hairline/50">
         <p>
-          Siraj (سِرَاج) · Prayer times, Quran, Masajid, 99 Names, Adhkar, Qibla, and daily worship tracker.
+          Shareek (شَرِيك) · Prayer times, Quran, Masajid, 99 Names, Adhkar, Qibla, and daily worship tracker.
         </p>
         <div className="flex gap-5">
           <a href="#contribute" className="font-semibold text-brand hover:text-deep transition">Contribute</a>
