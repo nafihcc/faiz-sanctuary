@@ -135,8 +135,8 @@ function MasjidPage() {
         <div className="flex flex-wrap items-baseline justify-between gap-4">
           <div>
             <div className="flex items-center gap-2 mb-2">
-              <span className="inline-block size-2 rounded-full bg-[#c5a059] animate-pulse" />
-              <span className="font-mono text-xs uppercase tracking-widest text-[#c5a059]">
+              <span className="inline-block size-2 rounded-full bg-brand animate-pulse" />
+              <span className="font-mono text-xs uppercase tracking-widest text-brand">
                 Spatial Locator · {location.name}
               </span>
             </div>
@@ -150,12 +150,12 @@ function MasjidPage() {
               onClick={requestDeviceGPS}
               className={`inline-flex items-center gap-2 px-3.5 py-2 rounded-xl text-xs font-mono font-medium transition-all ${
                 gpsActive
-                  ? "bg-gradient-to-r from-[#c5a059] to-[#d4af37] text-[#0a261e] font-semibold shadow-sm"
-                  : "bg-panel border border-hairline text-deep/80 hover:border-[#c5a059]/50"
+                  ? "bg-brand text-primary-foreground font-semibold shadow-sm"
+                  : "bg-panel border border-hairline text-deep/80 hover:border-brand/50"
               }`}
               title="Use precise device GPS coordinates"
             >
-              <Navigation className="size-3.5 text-[#c5a059]" />
+              <Navigation className="size-3.5 text-brand" />
               {gpsActive ? "GPS Active" : "Use Live GPS"}
             </button>
             <div className="font-mono text-xs px-3 py-2 rounded-xl bg-panel border border-hairline text-deep/60">
@@ -178,7 +178,7 @@ function MasjidPage() {
                 onClick={() => setRadiusKm(r)}
                 className={`px-3 py-1.5 rounded-lg transition-all ${
                   radiusKm === r
-                    ? "bg-gradient-to-r from-[#c5a059] to-[#d4af37] text-[#0a261e] font-semibold shadow-xs"
+                    ? "bg-brand text-primary-foreground font-semibold shadow-xs"
                     : "text-deep/60 hover:text-deep"
                 }`}
               >
@@ -193,7 +193,7 @@ function MasjidPage() {
               onClick={() => setActiveTab("all")}
               className={`px-3 py-1.5 rounded-xl border transition ${
                 activeTab === "all"
-                  ? "border-[#c5a059] bg-[#c5a059]/15 text-[#c5a059] font-semibold"
+                  ? "border-brand/40 bg-brand/10 text-brand font-semibold"
                   : "border-hairline bg-panel text-deep/60 hover:text-deep"
               }`}
             >
@@ -203,7 +203,7 @@ function MasjidPage() {
               onClick={() => setActiveTab("jummah")}
               className={`px-3 py-1.5 rounded-xl border transition ${
                 activeTab === "jummah"
-                  ? "border-[#155e42] bg-[#155e42]/15 text-[#155e42] font-semibold"
+                  ? "border-brand/40 bg-brand/10 text-brand font-semibold"
                   : "border-hairline bg-panel text-deep/60 hover:text-deep"
               }`}
             >
@@ -213,7 +213,7 @@ function MasjidPage() {
               onClick={() => setActiveTab("womens")}
               className={`px-3 py-1.5 rounded-xl border transition ${
                 activeTab === "womens"
-                  ? "border-[#c5a059] bg-[#c5a059]/15 text-[#c5a059] font-semibold"
+                  ? "border-brand/40 bg-brand/10 text-brand font-semibold"
                   : "border-hairline bg-panel text-deep/60 hover:text-deep"
               }`}
             >
@@ -229,7 +229,7 @@ function MasjidPage() {
               placeholder="Search mosque name or street..."
               value={filterQuery}
               onChange={(e) => setFilterQuery(e.target.value)}
-              className="w-full rounded-xl border border-hairline bg-panel pl-9 pr-3 py-1.5 text-xs text-deep placeholder:text-deep/40 focus:border-[#c5a059] focus:outline-hidden"
+              className="w-full rounded-xl border border-hairline bg-panel pl-9 pr-3 py-1.5 text-xs text-deep placeholder:text-deep/40 focus:border-brand focus:outline-hidden"
             />
           </div>
         </div>
@@ -238,8 +238,8 @@ function MasjidPage() {
       {/* Grid of Mosque Cards */}
       {loading ? (
         <div className="flex flex-col items-center justify-center py-20 text-center">
-          <RefreshCw className="size-8 animate-spin text-[#c5a059] mb-4" />
-          <p className="font-mono text-xs uppercase tracking-widest text-[#c5a059]">
+          <RefreshCw className="size-8 animate-spin text-brand mb-4" />
+          <p className="font-mono text-xs uppercase tracking-widest text-brand">
             Querying satellite nodes & geographic coordinates...
           </p>
         </div>
@@ -252,7 +252,7 @@ function MasjidPage() {
           </p>
           <button
             onClick={() => setRadiusKm(25)}
-            className="mt-5 px-4 py-2 rounded-xl bg-[#7ccd05] text-[#1e3219] text-xs font-mono font-semibold hover:bg-[#9cfc04] transition"
+            className="mt-5 px-4 py-2 rounded-xl bg-brand text-primary-foreground text-xs font-mono font-semibold hover:bg-deep transition"
           >
             Expand to 25 km
           </button>
@@ -263,7 +263,6 @@ function MasjidPage() {
             {filtered.map((m, idx) => {
               const bearingLabel = m.bearing !== undefined ? getBearingLabel(m.bearing) : "N";
               const googleMapsUrl = `https://www.google.com/maps/dir/?api=1&destination=${m.lat},${m.lng}`;
-              const appleMapsUrl = `https://maps.apple.com/?daddr=${m.lat},${m.lng}`;
 
               return (
                 <motion.article
@@ -273,7 +272,7 @@ function MasjidPage() {
                   animate={{ opacity: 1, y: 0 }}
                   exit={{ opacity: 0, scale: 0.95 }}
                   transition={{ duration: 0.35, delay: Math.min(idx * 0.04, 0.4) }}
-                  className="group relative flex flex-col justify-between rounded-2xl border border-hairline bg-card/90 p-5 shadow-xs transition-all hover:border-[#7ccd05]/50 hover:shadow-md"
+                  className="glass-panel group relative flex flex-col justify-between rounded-2xl p-5 shadow-xs transition-all hover:border-brand/40 hover:shadow-md"
                 >
                   <div>
                     {/* Header: Distance & Bearing Dial */}
@@ -293,11 +292,11 @@ function MasjidPage() {
                       {/* Compass Bearing Indicator */}
                       {m.bearing !== undefined && (
                         <div
-                          className="flex items-center gap-1.5 px-2.5 py-1 rounded-lg bg-[#c5a059]/10 border border-[#c5a059]/25 text-[11px] font-mono text-[#c5a059]"
+                          className="flex items-center gap-1.5 px-2.5 py-1 rounded-lg bg-brand/10 border border-brand/20 text-[11px] font-mono text-brand"
                           title={`Bearing: ${m.bearing}° (${bearingLabel})`}
                         >
                           <Compass
-                            className="size-3.5 text-[#c5a059] transition-transform duration-500"
+                            className="size-3.5 text-brand transition-transform duration-500"
                             style={{ transform: `rotate(${m.bearing}deg)` }}
                           />
                           <span>
@@ -308,7 +307,7 @@ function MasjidPage() {
                     </div>
 
                     {/* Name & Arabic Calligraphy */}
-                    <h2 className="font-display text-lg font-semibold text-deep leading-snug group-hover:text-[#c5a059] transition-colors">
+                    <h2 className="font-display text-lg font-semibold text-deep leading-snug group-hover:text-brand transition-colors">
                       {m.name}
                     </h2>
                     {m.arabicName && (
@@ -320,7 +319,7 @@ function MasjidPage() {
                     {/* Address */}
                     {m.address && (
                       <p className="mt-2 text-xs text-deep/60 line-clamp-2 leading-relaxed flex items-start gap-1.5">
-                        <MapPin className="size-3.5 shrink-0 mt-0.5 text-[#c5a059]/70" />
+                        <MapPin className="size-3.5 shrink-0 mt-0.5 text-brand/70" />
                         <span>{m.address}</span>
                       </p>
                     )}
@@ -328,12 +327,12 @@ function MasjidPage() {
                     {/* Amenities tags */}
                     <div className="mt-4 flex flex-wrap gap-1.5">
                       {m.amenities.jummahPrayer && (
-                        <span className="inline-flex items-center gap-1 px-2 py-0.5 rounded-md bg-[#155e42]/15 text-[#155e42] text-[10px] font-medium font-mono border border-[#155e42]/25">
-                          <CheckCircle2 className="size-2.5 text-[#155e42]" /> Jumu'ah
+                        <span className="inline-flex items-center gap-1 px-2 py-0.5 rounded-md bg-brand/10 text-brand text-[10px] font-medium font-mono border border-brand/20">
+                          <CheckCircle2 className="size-2.5 text-brand" /> Jumu'ah
                         </span>
                       )}
                       {m.amenities.womensArea && (
-                        <span className="inline-flex items-center gap-1 px-2 py-0.5 rounded-md bg-[#c5a059]/15 text-[#c5a059] text-[10px] font-medium font-mono border border-[#c5a059]/25">
+                        <span className="inline-flex items-center gap-1 px-2 py-0.5 rounded-md bg-mist text-deep/80 text-[10px] font-medium font-mono border border-hairline">
                           Sisters' Hall
                         </span>
                       )}
@@ -361,7 +360,7 @@ function MasjidPage() {
                         href={googleMapsUrl}
                         target="_blank"
                         rel="noreferrer"
-                        className="inline-flex items-center gap-1 px-3.5 py-1.5 rounded-xl bg-gradient-to-r from-[#c5a059] to-[#d4af37] text-[#0a261e] text-xs font-mono font-semibold shadow-xs hover:brightness-105 transition"
+                        className="inline-flex items-center gap-1 px-3.5 py-1.5 rounded-xl bg-brand text-primary-foreground text-xs font-mono font-semibold shadow-xs hover:bg-deep transition"
                       >
                         <span>Directions</span>
                         <ExternalLink className="size-3" />
@@ -377,7 +376,7 @@ function MasjidPage() {
 
       {/* Footnote on OpenStreetMap and Community Accuracy */}
       <footer className="mt-12 p-4 rounded-2xl bg-panel border border-hairline flex items-start gap-3 text-xs text-deep/60">
-        <Info className="size-4 shrink-0 text-[#7ccd05] mt-0.5" />
+        <Info className="size-4 shrink-0 text-brand mt-0.5" />
         <p>
           Coordinates and prayer facilities are fetched through OpenStreetMap and geographical geodetic systems. When traveling, please confirm Friday prayer timings directly with local mosque committees.
         </p>

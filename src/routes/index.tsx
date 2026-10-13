@@ -86,14 +86,14 @@ function Home() {
       >
         {(
           [
-            { to: "/quran", icon: "📖", title: "Quran", sub: "Mushaf & audio", glow: "from-[#c5a059]/20", border: "hover:border-[#c5a059]/40" },
-            { to: "/masjid", icon: "🕌", title: "Masajid", sub: "Spatial radar", glow: "from-[#155e42]/25", border: "hover:border-[#155e42]/40" },
-            { to: "/asmaul-husna", icon: "✨", title: "99 Names", sub: "Asmaul Husna", glow: "from-[#d4af37]/25", border: "hover:border-[#d4af37]/40" },
-            { to: "/duas", icon: "🤲", title: "Adhkar & Duas", sub: "Hisn al-Muslim", glow: "from-[#207755]/25", border: "hover:border-[#207755]/40" },
-            { to: "/qibla", icon: "🧭", title: "Qibla", sub: "Compass bearing", glow: "from-[#b8860b]/20", border: "hover:border-[#b8860b]/40" },
-            { to: "/dhikr", icon: "📿", title: "Dhikr", sub: "Tally counter", glow: "from-[#155e42]/20", border: "hover:border-[#155e42]/40" },
-            { to: "/tracker", icon: "📊", title: "Tracker", sub: "Daily checklist", glow: "from-[#4a3b75]/20", border: "hover:border-[#4a3b75]/40" },
-            { to: "/calendar", icon: "🗓️", title: "Timetable", sub: "PDF & CSV export", glow: "from-[#1e3f66]/20", border: "hover:border-[#1e3f66]/40" },
+            { to: "/quran", icon: "📖", title: "Quran", sub: "Mushaf & audio" },
+            { to: "/masjid", icon: "🕌", title: "Masajid", sub: "Spatial radar" },
+            { to: "/asmaul-husna", icon: "✨", title: "99 Names", sub: "Asmaul Husna" },
+            { to: "/duas", icon: "🤲", title: "Adhkar & Duas", sub: "Hisn al-Muslim" },
+            { to: "/qibla", icon: "🧭", title: "Qibla", sub: "Compass bearing" },
+            { to: "/dhikr", icon: "📿", title: "Dhikr", sub: "Tally counter" },
+            { to: "/tracker", icon: "📊", title: "Tracker", sub: "Daily checklist" },
+            { to: "/calendar", icon: "🗓️", title: "Timetable", sub: "PDF & CSV export" },
           ] as const
         ).map((t) => (
           <motion.div 
@@ -105,14 +105,14 @@ function Home() {
           >
             <Link
               to={t.to}
-              className={`glass-panel group relative block h-full rounded-2xl p-4 flex flex-col justify-center gap-3 shadow-sm hover:shadow-xl ${t.border} transition-all overflow-hidden`}
+              className="glass-panel group relative block h-full rounded-2xl p-4 flex flex-col justify-center gap-3 shadow-sm hover:shadow-xl hover:border-brand/30 transition-all overflow-hidden"
             >
-              <div className={`absolute inset-0 bg-gradient-to-br ${t.glow} to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300 pointer-events-none`} />
+              <div className="absolute inset-0 bg-gradient-to-br from-brand/10 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300 pointer-events-none" />
               <span className="text-2xl w-11 h-11 rounded-xl bg-mist/90 grid place-items-center group-hover:scale-110 group-hover:shadow-md transition-all">
                 {t.icon}
               </span>
               <span className="relative z-10">
-                <span className="block font-semibold text-deep font-display group-hover:text-[#c5a059] transition-colors">
+                <span className="block font-semibold text-deep font-display group-hover:text-brand transition-colors">
                   {t.title}
                 </span>
                 <span className="block text-[11px] text-deep/55">{t.sub}</span>
@@ -348,7 +348,7 @@ function Home() {
           </motion.div>
 
           <motion.div whileHover={{ y: -6, scale: 1.02 }} whileTap={{ scale: 0.98 }}>
-            <Link to="/dhikr" className="glass-panel block h-full rounded-3xl p-6 hover:shadow-2xl hover:border-emerald-500/30 transition-all shadow-sm">
+            <Link to="/dhikr" className="glass-panel block h-full rounded-3xl p-6 hover:shadow-2xl hover:border-brand/30 transition-all shadow-sm">
               <div className="flex items-center justify-between">
                 <span className="text-2xl">📿</span>
                 <span className="text-[10px] font-semibold uppercase tracking-[0.15em] text-brand/70 bg-brand/10 px-2.5 py-1 rounded-full">

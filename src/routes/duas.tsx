@@ -86,8 +86,8 @@ function DuasPage() {
         <div className="flex flex-wrap items-baseline justify-between gap-4">
           <div>
             <div className="flex items-center gap-2 mb-2">
-              <span className="inline-block size-2 rounded-full bg-[#c5a059]" />
-              <span className="font-mono text-xs uppercase tracking-widest text-[#c5a059]">
+              <span className="inline-block size-2 rounded-full bg-brand" />
+              <span className="font-mono text-xs uppercase tracking-widest text-brand">
                 Hisn al-Muslim · حصن المسلم
               </span>
             </div>
@@ -114,7 +114,7 @@ function DuasPage() {
                 onClick={() => setSelectedCategory(c)}
                 className={`px-3 py-1.5 rounded-xl transition-all ${
                   selectedCategory === c
-                    ? "bg-gradient-to-r from-[#c5a059] to-[#d4af37] text-[#0a261e] font-semibold shadow-xs"
+                    ? "bg-brand text-primary-foreground font-semibold shadow-xs"
                     : "text-deep/60 hover:text-deep"
                 }`}
               >
@@ -130,7 +130,7 @@ function DuasPage() {
               placeholder="Search supplication or occasion..."
               value={search}
               onChange={(e) => setSearch(e.target.value)}
-              className="w-full rounded-xl border border-hairline bg-panel pl-9 pr-3 py-2 text-xs text-deep placeholder:text-deep/40 focus:border-[#c5a059] focus:outline-hidden"
+              className="w-full rounded-xl border border-hairline bg-panel pl-9 pr-3 py-2 text-xs text-deep placeholder:text-deep/40 focus:border-brand focus:outline-hidden"
             />
           </div>
         </div>
@@ -152,10 +152,10 @@ function DuasPage() {
                 animate={{ opacity: 1, y: 0 }}
                 exit={{ opacity: 0, scale: 0.98 }}
                 transition={{ duration: 0.3, delay: Math.min(idx * 0.03, 0.3) }}
-                className={`group relative rounded-3xl border transition-all p-6 sm:p-8 bg-card/85 backdrop-blur-xs ${
+                className={`glass-panel group relative rounded-3xl transition-all p-6 sm:p-8 ${
                   isCompleted
-                    ? "border-[#7ccd05]/80 shadow-md bg-panel"
-                    : "border-hairline hover:border-brand/30"
+                    ? "border-brand/50 shadow-md bg-panel"
+                    : "hover:border-brand/30"
                 }`}
               >
                 {/* Top Meta */}
@@ -180,11 +180,11 @@ function DuasPage() {
                     </button>
                     <button
                       onClick={(e) => copyToClipboard(dua, e)}
-                      className="p-2 rounded-xl text-deep/40 hover:text-[#c5a059] hover:bg-mist/70 transition"
+                      className="p-2 rounded-xl text-deep/40 hover:text-brand hover:bg-mist/70 transition"
                       title="Copy Supplication"
                     >
                       {copiedId === dua.id ? (
-                        <Check className="size-4 text-[#c5a059]" />
+                        <Check className="size-4 text-brand" />
                       ) : (
                         <Copy className="size-4" />
                       )}
@@ -214,8 +214,8 @@ function DuasPage() {
 
                 {/* Virtue or Context */}
                 {dua.fadilah && (
-                  <div className="mt-4 p-3 rounded-xl bg-[#155e42]/10 border border-[#155e42]/20 flex items-start gap-2.5 text-xs text-[#155e42] dark:text-[#70b89b]">
-                    <Sparkles className="size-4 shrink-0 text-[#c5a059] mt-0.5" />
+                  <div className="mt-4 p-3 rounded-xl bg-brand/5 border border-brand/15 flex items-start gap-2.5 text-xs text-deep/80">
+                    <Sparkles className="size-4 shrink-0 text-brand mt-0.5" />
                     <span><strong>Virtue:</strong> {dua.fadilah}</span>
                   </div>
                 )}
@@ -223,7 +223,7 @@ function DuasPage() {
                 {/* Footer with Hadith Reference & Repetition Counter */}
                 <div className="mt-6 pt-4 border-t border-hairline/60 flex flex-wrap items-center justify-between gap-4">
                   <div className="flex items-center gap-2 text-xs font-mono text-deep/50">
-                    <BookMarked className="size-3.5 text-[#c5a059]" />
+                    <BookMarked className="size-3.5 text-brand" />
                     <span>{dua.reference}</span>
                   </div>
 
@@ -232,7 +232,7 @@ function DuasPage() {
                     <div className="flex items-center gap-2">
                       <div className="w-24 sm:w-32 h-2 rounded-full bg-mist overflow-hidden">
                         <div
-                          className="h-full bg-gradient-to-r from-[#c5a059] to-[#d4af37] transition-all duration-300"
+                          className="h-full bg-gradient-to-r from-brand to-gold transition-all duration-300"
                           style={{ width: `${progressPct}%` }}
                         />
                       </div>
@@ -246,13 +246,13 @@ function DuasPage() {
                       disabled={isCompleted}
                       className={`px-4 py-2 rounded-xl font-mono text-xs font-semibold transition-all shadow-xs flex items-center gap-1.5 ${
                         isCompleted
-                          ? "bg-[#155e42]/20 text-[#155e42] border border-[#155e42]/30 cursor-default"
-                          : "bg-gradient-to-r from-[#c5a059] to-[#d4af37] text-[#0a261e] hover:brightness-105 active:scale-95"
+                          ? "bg-brand/10 text-brand border border-brand/25 cursor-default"
+                          : "bg-brand text-primary-foreground hover:bg-deep active:scale-95"
                       }`}
                     >
                       {isCompleted ? (
                         <>
-                          <CheckCircle2 className="size-3.5 text-[#155e42]" /> Completed
+                          <CheckCircle2 className="size-3.5 text-brand" /> Completed
                         </>
                       ) : (
                         <span>Tap to Count (+1)</span>

@@ -79,8 +79,8 @@ function AsmaulHusnaPage() {
         <div className="flex flex-wrap items-baseline justify-between gap-4">
           <div>
             <div className="flex items-center gap-2 mb-2">
-              <span className="inline-block size-2 rounded-full bg-[#c5a059]" />
-              <span className="font-mono text-xs uppercase tracking-widest text-[#c5a059]">
+              <span className="inline-block size-2 rounded-full bg-brand" />
+              <span className="font-mono text-xs uppercase tracking-widest text-brand">
                 Divine Attributes · الأسماء الحسنى
               </span>
             </div>
@@ -99,12 +99,12 @@ function AsmaulHusnaPage() {
         </p>
 
         {/* Name of the Day Feature Banner */}
-        <div className="mt-8 rounded-3xl border border-[#c5a059]/30 bg-gradient-to-br from-card/90 via-card/70 to-[#c5a059]/5 backdrop-blur-md p-6 sm:p-8 flex flex-col md:flex-row items-start md:items-center justify-between gap-6 relative overflow-hidden shadow-sm">
-          <div className="absolute -right-8 -top-8 size-48 rounded-full bg-[#c5a059]/15 blur-2xl pointer-events-none" />
+        <div className="mt-8 glass-panel rounded-3xl p-6 sm:p-8 flex flex-col md:flex-row items-start md:items-center justify-between gap-6 relative overflow-hidden">
+          <div className="absolute -right-8 -top-8 size-48 rounded-full bg-brand/10 blur-2xl pointer-events-none" />
 
           <div>
-            <div className="flex items-center gap-2 mb-2 text-xs font-mono text-[#c5a059]">
-              <Sparkles className="size-3.5 text-[#c5a059]" />
+            <div className="flex items-center gap-2 mb-2 text-xs font-mono text-brand">
+              <Sparkles className="size-3.5 text-brand" />
               <span>Name of the Day · Contemplation</span>
             </div>
             <div className="flex items-baseline gap-3">
@@ -112,7 +112,7 @@ function AsmaulHusnaPage() {
               <h2 className="font-display text-2xl sm:text-3xl font-semibold text-deep">
                 {nameOfTheDay.transliteration}
               </h2>
-              <span className="font-mono text-xs px-2.5 py-1 rounded-full bg-[#c5a059]/15 text-[#c5a059] border border-[#c5a059]/30">
+              <span className="font-mono text-xs px-2.5 py-1 rounded-full bg-brand/10 text-brand border border-brand/20">
                 {nameOfTheDay.meaning}
               </span>
             </div>
@@ -128,14 +128,14 @@ function AsmaulHusnaPage() {
             <div className="flex items-center gap-2">
               <button
                 onClick={(e) => speakArabic(nameOfTheDay.arabic, e)}
-                className="p-2 rounded-xl bg-panel border border-hairline text-deep/70 hover:text-[#c5a059] hover:border-[#c5a059] transition"
+                className="p-2 rounded-xl bg-panel border border-hairline text-deep/70 hover:text-brand hover:border-brand/40 transition"
                 title="Listen to pronunciation"
               >
                 <Volume2 className="size-4" />
               </button>
               <button
                 onClick={() => setSelectedName(nameOfTheDay)}
-                className="px-4 py-2 rounded-xl bg-gradient-to-r from-[#c5a059] to-[#d4af37] text-[#0a261e] text-xs font-mono font-semibold hover:brightness-105 transition shadow-xs"
+                className="px-4 py-2 rounded-xl bg-brand text-primary-foreground text-xs font-mono font-semibold hover:bg-deep transition shadow-xs"
               >
                 Reflect & Praise
               </button>
@@ -152,7 +152,7 @@ function AsmaulHusnaPage() {
                 onClick={() => setSelectedCategory(cat)}
                 className={`px-3 py-1.5 rounded-xl transition-all ${
                   selectedCategory === cat
-                    ? "bg-gradient-to-r from-[#c5a059] to-[#d4af37] text-[#0a261e] font-semibold shadow-xs"
+                    ? "bg-brand text-primary-foreground font-semibold shadow-xs"
                     : "text-deep/60 hover:text-deep"
                 }`}
               >
@@ -168,7 +168,7 @@ function AsmaulHusnaPage() {
               placeholder="Search by number, English, Arabic..."
               value={search}
               onChange={(e) => setSearch(e.target.value)}
-              className="w-full rounded-xl border border-hairline bg-panel pl-9 pr-3 py-2 text-xs text-deep placeholder:text-deep/40 focus:border-[#c5a059] focus:outline-hidden"
+              className="w-full rounded-xl border border-hairline bg-panel pl-9 pr-3 py-2 text-xs text-deep placeholder:text-deep/40 focus:border-brand focus:outline-hidden"
             />
           </div>
         </div>
@@ -184,19 +184,19 @@ function AsmaulHusnaPage() {
               whileHover={{ y: -3 }}
               transition={{ duration: 0.2 }}
               onClick={() => setSelectedName(name)}
-              className="cursor-pointer group relative flex flex-col justify-between rounded-2xl border border-hairline bg-card/80 p-5 shadow-xs transition-all hover:border-[#c5a059]/60 hover:bg-panel hover:shadow-md"
+              className="glass-panel cursor-pointer group relative flex flex-col justify-between rounded-2xl p-5 shadow-xs transition-all hover:border-brand/40 hover:bg-panel hover:shadow-md"
             >
               <div>
                 <div className="flex items-center justify-between mb-3">
                   <span className="font-mono text-xs text-deep/40">#{name.number.toString().padStart(2, "0")}</span>
-                  <span className="font-mono text-[10px] px-2 py-0.5 rounded-md bg-[#c5a059]/10 text-[#c5a059] border border-[#c5a059]/20 font-medium">
+                  <span className="font-mono text-[10px] px-2 py-0.5 rounded-md bg-brand/10 text-brand border border-brand/20 font-medium">
                     {name.category}
                   </span>
                 </div>
 
                 {/* Arabic Calligraphy Headline */}
                 <div className="text-right py-2">
-                  <span className="font-arabic text-3xl font-normal text-deep group-hover:text-[#c5a059] transition-colors" dir="rtl">
+                  <span className="font-arabic text-3xl font-normal text-deep group-hover:text-brand transition-colors" dir="rtl">
                     {name.arabic}
                   </span>
                 </div>
@@ -218,7 +218,7 @@ function AsmaulHusnaPage() {
                 <button
                   type="button"
                   onClick={(e) => speakArabic(name.arabic, e)}
-                  className="p-1.5 rounded-lg text-deep/40 hover:text-[#c5a059] hover:bg-mist/70 transition"
+                  className="p-1.5 rounded-lg text-deep/40 hover:text-brand hover:bg-mist/70 transition"
                   title="Listen"
                 >
                   <Volume2 className="size-3.5" />
@@ -228,7 +228,7 @@ function AsmaulHusnaPage() {
                   <button
                     type="button"
                     onClick={(e) => incrementCount(name.number, e)}
-                    className="inline-flex items-center gap-1 px-2.5 py-1 rounded-lg bg-[#c5a059]/15 text-[#c5a059] font-mono text-xs font-semibold hover:bg-[#c5a059] hover:text-[#0a261e] transition border border-[#c5a059]/25"
+                    className="inline-flex items-center gap-1 px-2.5 py-1 rounded-lg bg-brand/10 text-brand font-mono text-xs font-semibold hover:bg-brand hover:text-primary-foreground transition border border-brand/20"
                   >
                     <Plus className="size-3" />
                     <span>{count > 0 ? count : "Praise"}</span>
@@ -253,12 +253,12 @@ function AsmaulHusnaPage() {
       {/* Reflection Detail Modal */}
       <AnimatePresence>
         {selectedName && (
-          <div className="fixed inset-0 z-50 flex items-center justify-center p-4 bg-deep/50 backdrop-blur-xs">
+          <div className="fixed inset-0 z-50 flex items-center justify-center p-4 bg-deep/40 backdrop-blur-xs">
             <motion.div
               initial={{ opacity: 0, scale: 0.95, y: 15 }}
               animate={{ opacity: 1, scale: 1, y: 0 }}
               exit={{ opacity: 0, scale: 0.95 }}
-              className="relative w-full max-w-lg rounded-3xl border border-[#c5a059]/30 bg-panel p-6 sm:p-8 shadow-2xl overflow-hidden"
+              className="relative w-full max-w-lg rounded-3xl border border-hairline bg-panel p-6 sm:p-8 shadow-2xl overflow-hidden"
             >
               <button
                 onClick={() => setSelectedName(null)}
@@ -275,7 +275,7 @@ function AsmaulHusnaPage() {
                 <h2 className="font-display text-2xl font-bold text-deep">
                   {selectedName.transliteration}
                 </h2>
-                <p className="text-sm font-semibold text-[#c5a059] mt-1">{selectedName.meaning}</p>
+                <p className="text-sm font-semibold text-brand mt-1">{selectedName.meaning}</p>
               </div>
 
               <div className="py-5 space-y-4 text-xs sm:text-sm text-deep/70 leading-relaxed">
@@ -287,8 +287,8 @@ function AsmaulHusnaPage() {
                 </div>
 
                 {selectedName.quranReference && (
-                  <div className="flex items-center gap-2 p-3 rounded-xl bg-mist/60 font-mono text-xs text-deep/70 border border-[#c5a059]/20">
-                    <BookOpen className="size-4 text-[#c5a059]" />
+                  <div className="flex items-center gap-2 p-3 rounded-xl bg-mist/60 font-mono text-xs text-deep/70 border border-hairline">
+                    <BookOpen className="size-4 text-brand" />
                     <span>Quranic Reference: {selectedName.quranReference}</span>
                   </div>
                 )}
@@ -309,7 +309,7 @@ function AsmaulHusnaPage() {
                   onClick={(e) => speakArabic(selectedName.arabic, e)}
                   className="inline-flex items-center gap-1.5 px-3 py-2 rounded-xl bg-mist/60 text-xs font-mono font-medium text-deep/70 hover:text-deep transition"
                 >
-                  <Volume2 className="size-4 text-[#c5a059]" /> Pronounce
+                  <Volume2 className="size-4 text-brand" /> Pronounce
                 </button>
 
                 <div className="flex items-center gap-2">
@@ -318,7 +318,7 @@ function AsmaulHusnaPage() {
                   </span>
                   <button
                     onClick={() => incrementCount(selectedName.number)}
-                    className="px-4 py-2 rounded-xl bg-gradient-to-r from-[#c5a059] to-[#d4af37] text-[#0a261e] text-xs font-mono font-semibold hover:brightness-105 transition shadow-xs"
+                    className="px-4 py-2 rounded-xl bg-brand text-primary-foreground text-xs font-mono font-semibold hover:bg-deep transition shadow-xs"
                   >
                     +1 Tap to Count
                   </button>

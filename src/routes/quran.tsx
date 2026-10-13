@@ -287,7 +287,7 @@ function QuranPage() {
             <motion.div 
               initial={{ opacity: 0, scale: 0.9 }}
               animate={{ opacity: 1, scale: 1 }}
-              className="flex items-center gap-1.5 px-3 py-1 rounded-full bg-[#c5a059]/15 border border-[#c5a059]/30 text-[#c5a059] text-xs font-medium"
+              className="flex items-center gap-1.5 px-3 py-1 rounded-full bg-brand/10 border border-brand/25 text-brand text-xs font-medium"
             >
               <span className="flex items-end gap-0.5 h-3">
                 {[0.4, 0.8, 0.5, 1, 0.6].map((h, i) => (
@@ -299,7 +299,7 @@ function QuranPage() {
                       repeat: Infinity,
                       ease: "easeInOut",
                     }}
-                    className="w-0.5 bg-[#c5a059] rounded-full inline-block"
+                    className="w-0.5 bg-brand rounded-full inline-block"
                   />
                 ))}
               </span>
@@ -322,18 +322,18 @@ function QuranPage() {
                 aria-pressed={active}
                 className={`relative flex w-32 shrink-0 snap-center flex-col items-center gap-2.5 rounded-2xl border p-3 text-center transition-all shadow-sm ${
                   active 
-                    ? "border-[#c5a059] bg-panel shadow-md ring-2 ring-[#c5a059]/40" 
-                    : "border-hairline bg-card/80 backdrop-blur-sm hover:border-[#c5a059]/30 hover:bg-panel"
+                    ? "border-brand bg-panel shadow-md ring-2 ring-brand/25" 
+                    : "border-hairline bg-card/80 backdrop-blur-sm hover:border-brand/30 hover:bg-panel"
                 }`}
               >
                 {active && (
                   <motion.div 
                     layoutId="active-reciter-glow"
-                    className="absolute inset-0 rounded-2xl bg-gradient-to-b from-[#c5a059]/10 to-[#155e42]/5 pointer-events-none"
+                    className="absolute inset-0 rounded-2xl bg-gradient-to-b from-brand/10 to-transparent pointer-events-none"
                   />
                 )}
                 
-                <div className="relative size-18 overflow-hidden rounded-full border-2 border-panel shadow-md ring-2 ring-[#c5a059]/30">
+                <div className="relative size-18 overflow-hidden rounded-full border-2 border-panel shadow-md ring-2 ring-brand/20">
                   <img 
                     src={r.image} 
                     alt={r.name} 

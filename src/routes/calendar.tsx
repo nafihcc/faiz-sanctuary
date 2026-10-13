@@ -153,7 +153,7 @@ function CalendarPage() {
             className="flex items-center gap-2 px-3.5 py-2.5 rounded-xl glass-panel text-deep/80 text-xs sm:text-sm font-semibold hover:border-brand/40 hover:text-brand transition active:scale-95 shadow-sm"
             title="Export timetable data as CSV"
           >
-            <FileSpreadsheet className="size-4 text-emerald-600" />
+            <FileSpreadsheet className="size-4 text-brand" />
             <span className="hidden sm:inline">Export CSV</span>
           </button>
         </div>
@@ -209,7 +209,7 @@ function CalendarPage() {
           Calculated using traditional astronomical reckoning · Fajr (18.0° dip) · Isha (17.5° dip) · Elevation adjustment applied ({Math.round(location.elevation)}m).
         </p>
         <p className="mt-1 text-gray-500">
-          Generated via Faiz Islamic Companion
+          Generated via Shareek (شَرِيك)
         </p>
       </div>
     </motion.main>
