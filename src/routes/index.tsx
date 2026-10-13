@@ -16,13 +16,13 @@ import { qiblaBearing } from "@/lib/qibla";
 export const Route = createFileRoute("/")({
   head: () => ({
     meta: [
-      { title: "Faiz — Prayer Times, Quran, Qibla & Daily Worship" },
+      { title: "Siraj — Prayer Times, Quran, Qibla & Daily Worship" },
       {
         name: "description",
         content:
           "Prayer times computed live from your coordinates and elevation: Fajr at true dawn (20°), Isha at 18°, Maghrib four minutes after sunset, plus Quran, Qibla and dhikr.",
       },
-      { property: "og:title", content: "Faiz — Prayer Times, Quran, Qibla & Daily Worship" },
+      { property: "og:title", content: "Siraj — Prayer Times, Quran, Qibla & Daily Worship" },
       {
         property: "og:description",
         content:
@@ -166,7 +166,7 @@ function Home() {
             transition={{ delay: 0.35, duration: 0.45, ease: smoothEase }}
             className="mt-5 text-deep/60 text-base leading-relaxed max-w-sm"
           >
-            Faiz reads your coordinates and elevation, then computes each prayer time — then helps you read Quran, find the Qibla, keep dhikr
+            Siraj reads your coordinates and elevation, then computes each prayer time — then helps you read Quran, find the Qibla, keep dhikr
              and track your daily worship.
           </motion.p>
 

@@ -7,12 +7,12 @@ import { motion } from "framer-motion";
 export const Route = createFileRoute("/quran")({
   head: () => ({
     meta: [
-      { title: "Read the Quran — Arabic Pages and Recitation | Faiz" },
+      { title: "Read the Quran — Arabic Pages and Recitation | Siraj" },
       {
         name: "description",
         content: "Read the Holy Quran in Arabic by Mushaf page or verse, with Mishary Alafasy recitation.",
       },
-      { property: "og:title", content: "Arabic Quran Reader and Recitation | Faiz" },
+      { property: "og:title", content: "Arabic Quran Reader and Recitation | Siraj" },
       {
         property: "og:description",
         content: "An Arabic-only Quran reader with 604 Mushaf pages and verse recitation.",

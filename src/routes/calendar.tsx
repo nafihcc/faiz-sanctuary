@@ -14,13 +14,13 @@ import {
 export const Route = createFileRoute("/calendar")({
   head: () => ({
     meta: [
-      { title: "Monthly Prayer Timetable for Your Location | Faiz" },
+      { title: "Monthly Prayer Timetable for Your Location | Siraj" },
       {
         name: "description",
         content:
           "A full month of Fajr, sunrise, Dhuhr, Asr, Maghrib and Isha times computed from your own coordinates and elevation on the traditional reckoning.",
       },
-      { property: "og:title", content: "Monthly Prayer Timetable | Faiz" },
+      { property: "og:title", content: "Monthly Prayer Timetable | Siraj" },
       {
         property: "og:description",
         content: "Print-friendly month view of accurate azan times for your exact place.",
@@ -76,7 +76,7 @@ function CalendarPage() {
     const encodedUri = encodeURI(csvContent);
     const link = document.createElement("a");
     link.setAttribute("href", encodedUri);
-    link.setAttribute("download", `Faiz_Prayer_Timetable_${location.name.replace(/\s+/g, "_")}_${monthName.replace(/\s+/g, "_")}.csv`);
+    link.setAttribute("download", `Siraj_Prayer_Timetable_${location.name.replace(/\s+/g, "_")}_${monthName.replace(/\s+/g, "_")}.csv`);
     document.body.appendChild(link);
     link.click();
     document.body.removeChild(link);
@@ -94,7 +94,7 @@ function CalendarPage() {
       <div className="hidden print-only mb-6 text-center border-b pb-4">
         <p className="font-arabic text-2xl font-bold tracking-wide">بِسْمِ اللَّهِ الرَّحْمَٰنِ الرَّحِيمِ</p>
         <h1 className="text-2xl font-bold font-display uppercase tracking-wider mt-1">
-          Faiz · Monthly Prayer Timetable
+          Siraj · Monthly Prayer Timetable
         </h1>
         <p className="text-sm font-semibold mt-1">
           {location.name} {location.region ? `, ${location.region}` : ""} · {monthName}

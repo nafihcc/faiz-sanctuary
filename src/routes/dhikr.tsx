@@ -5,7 +5,7 @@ import { motion, AnimatePresence } from "framer-motion";
 export const Route = createFileRoute("/dhikr")({
   head: () => ({
     meta: [
-      { title: "Dhikr Counter — Digital Tasbih with Targets | Faiz" },
+      { title: "Dhikr Counter — Digital Tasbih with Targets | Siraj" },
       {
         name: "description",
         content:

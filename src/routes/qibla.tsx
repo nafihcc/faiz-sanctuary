@@ -7,7 +7,7 @@ import { compassPointName, distanceToKaaba, qiblaBearing } from "@/lib/qibla";
 export const Route = createFileRoute("/qibla")({
   head: () => ({
     meta: [
-      { title: "Qibla Finder — Compass, Dial and AR View | Faiz" },
+      { title: "Qibla Finder — Compass, Dial and AR View | Siraj" },
       {
         name: "description",
         content:

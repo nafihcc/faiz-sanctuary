@@ -5,6 +5,7 @@ import { LocationDialog } from "@/components/LocationDialog";
 import { ThemeToggle } from "@/components/ThemeToggle";
 import { AppExtras } from "@/components/AppExtras";
 import { IslamicCelestialBackground } from "@/components/IslamicCelestialBackground";
+import { ContributeSection } from "@/components/ContributeSection";
 
 const NAV = [
   { to: "/", label: "Prayer Times" },
@@ -28,17 +29,17 @@ export function AppShell({ children }: { children: ReactNode }) {
       <header className="relative z-10 px-4 sm:px-6 py-5 flex items-center justify-between gap-2 sm:gap-4 max-w-7xl mx-auto border-b border-hairline/70">
         <Link to="/" className="flex items-center gap-3 group">
           <div className="w-10 h-10 rounded-xl bg-gradient-to-br from-[#0c3b2e] to-[#155e42] grid place-items-center text-[#d4af37] font-display font-bold shadow-md ring-1 ring-[#c5a059]/40 group-hover:ring-[#d4af37] transition-all">
-            F
+            س
           </div>
           <div>
             <div className="flex items-center gap-2">
-              <span className="text-lg font-semibold text-deep tracking-tight font-display">Faiz</span>
-              <span className="text-[9px] uppercase tracking-[0.25em] px-1.5 py-0.5 rounded-sm bg-[#c5a059]/15 text-[#c5a059] font-mono font-medium">
-                Sanctuary
+              <span className="text-lg font-semibold text-deep tracking-tight font-display">Siraj</span>
+              <span className="text-[10px] tracking-wider px-1.5 py-0.5 rounded-sm bg-[#c5a059]/15 text-[#c5a059] font-arabic font-medium">
+                سِرَاج
               </span>
             </div>
             <span className="hidden sm:block text-[10px] uppercase tracking-[0.18em] text-deep/50 font-mono">
-              Luxury Islamic Companion
+              Prayer · Quran · Sunnah
             </span>
           </div>
         </Link>
@@ -60,6 +61,9 @@ export function AppShell({ children }: { children: ReactNode }) {
         <div className="flex items-center gap-2 sm:gap-3">
           <AppExtras />
           <ThemeToggle />
+          <a href="#contribute" className="hidden md:inline text-sm font-semibold text-deep/70 hover:text-[#c5a059] transition whitespace-nowrap">
+            Contribute
+          </a>
           <Link to="/about" className="text-sm font-semibold text-[#c5a059] hover:text-[#d4af37] transition whitespace-nowrap">
             About
           </Link>
@@ -78,11 +82,14 @@ export function AppShell({ children }: { children: ReactNode }) {
 
       <div className="relative z-10">{children}</div>
 
-      <footer className="relative z-10 max-w-7xl mx-auto px-6 py-10 flex flex-col sm:flex-row items-start sm:items-center justify-between gap-3 text-xs text-deep/50">
+      <ContributeSection />
+
+      <footer className="relative z-10 max-w-7xl mx-auto px-6 py-10 flex flex-col sm:flex-row items-start sm:items-center justify-between gap-3 text-xs text-deep/50 border-t border-hairline/50">
         <p>
-          Faiz · prayer times, Quran, Qibla, dhikr and a daily worship tracker in one place.
+          Siraj (سِرَاج) · Prayer times, Quran, Masajid, 99 Names, Adhkar, Qibla, and daily worship tracker.
         </p>
         <div className="flex gap-5">
+          <a href="#contribute" className="font-semibold text-brand hover:text-deep transition">Contribute</a>
           <Link to="/about" className="font-semibold text-brand hover:text-deep transition">About</Link>
           <Link to="/methodology" className="font-semibold text-brand hover:text-deep transition">View methodology →</Link>
         </div>

@@ -5,13 +5,13 @@ import { motion } from "framer-motion";
 export const Route = createFileRoute("/tracker")({
   head: () => ({
     meta: [
-      { title: "Daily Worship Tracker — Swalat, Istighfar, Quran | Faiz" },
+      { title: "Daily Worship Tracker — Swalat, Istighfar, Quran | Siraj" },
       {
         name: "description",
         content:
           "Log your daily swalat, istighfar, Quran pages and wake-up time, then see how you are improving week by week.",
       },
-      { property: "og:title", content: "Daily Worship Tracker | Faiz" },
+      { property: "og:title", content: "Daily Worship Tracker | Siraj" },
       {
         property: "og:description",
         content: "Mark swalat, istighfar, Quran and wake-up time for each day and watch your progress.",

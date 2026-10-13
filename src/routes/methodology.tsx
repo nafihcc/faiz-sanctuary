@@ -3,13 +3,13 @@ import { createFileRoute } from "@tanstack/react-router";
 export const Route = createFileRoute("/methodology")({
   head: () => ({
     meta: [
-      { title: "Methodology — How Faiz Computes Prayer Times" },
+      { title: "Methodology — How Siraj Computes Prayer Times" },
       {
         name: "description",
         content:
-          "The full reckoning behind Faiz: 20° true dawn for Fajr, 18° for Isha, Maghrib four minutes after sunset, and Shafiʿī Asr.",
+          "The full reckoning behind Siraj: 20° true dawn for Fajr, 18° for Isha, Maghrib four minutes after sunset, and Shafiʿī Asr.",
       },
-      { property: "og:title", content: "Methodology — How Faiz Computes Prayer Times" },
+      { property: "og:title", content: "Methodology — How Siraj Computes Prayer Times" },
       {
         property: "og:description",
         content:
@@ -33,7 +33,7 @@ function Methodology() {
       </h1>
       <p className="mt-4 text-deep/60 leading-relaxed">
         A prayer is only valid once its time has genuinely entered and the worshipper is certain of
-        it. Faiz therefore computes from the solar position at your exact coordinates and
+        it. Siraj therefore computes from the solar position at your exact coordinates and
         elevation, and never rounds a time earlier than the sky allows.
       </p>
 
@@ -41,7 +41,7 @@ function Methodology() {
         <Card title="Maghrib · four minutes after sunset">
           Sunset — the sun's upper limb touching the visible horizon — is the moment published
           azan timetables list. The law requires the complete disappearance of the whole disc, so
-          Faiz enters Maghrib a fixed four minutes after that sunset, in every location, exactly
+          Siraj enters Maghrib a fixed four minutes after that sunset, in every location, exactly
           as the traditional reckoning prescribes.
         </Card>
         <Card title="Fajr · true dawn at 20°">
