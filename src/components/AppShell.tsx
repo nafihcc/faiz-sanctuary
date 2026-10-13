@@ -6,17 +6,18 @@ import { ThemeToggle } from "@/components/ThemeToggle";
 import { AppExtras } from "@/components/AppExtras";
 import { IslamicCelestialBackground } from "@/components/IslamicCelestialBackground";
 import { ContributeSection } from "@/components/ContributeSection";
+import { ShareekLogo } from "@/components/ShareekLogo";
 
 const NAV = [
-  { to: "/", label: "Prayer Times" },
-  { to: "/qibla", label: "Qibla" },
-  { to: "/quran", label: "Quran" },
-  { to: "/masjid", label: "Masajid" },
-  { to: "/asmaul-husna", label: "99 Names" },
-  { to: "/duas", label: "Adhkar & Duas" },
-  { to: "/dhikr", label: "Dhikr" },
-  { to: "/tracker", label: "Tracker" },
-  { to: "/calendar", label: "Calendar" },
+  { to: "/", label: "Prayer Times", short: "Prayer", icon: "🕌" },
+  { to: "/qibla", label: "Qibla", short: "Qibla", icon: "🧭" },
+  { to: "/quran", label: "Quran", short: "Quran", icon: "📖" },
+  { to: "/masjid", label: "Masajid", short: "Masajid", icon: "📍" },
+  { to: "/asmaul-husna", label: "99 Names", short: "99 Names", icon: "✨" },
+  { to: "/duas", label: "Adhkar & Duas", short: "Duas", icon: "🤲" },
+  { to: "/dhikr", label: "Dhikr", short: "Dhikr", icon: "📿" },
+  { to: "/tracker", label: "Tracker", short: "Tracker", icon: "📊" },
+  { to: "/calendar", label: "Calendar", short: "Calendar", icon: "🗓️" },
 ] as const;
 
 export function AppShell({ children }: { children: ReactNode }) {
@@ -24,96 +25,109 @@ export function AppShell({ children }: { children: ReactNode }) {
   const [open, setOpen] = useState(false);
 
   return (
-    <div className="relative min-h-screen bg-surface overflow-hidden">
+    <div className="relative min-h-screen bg-surface overflow-x-hidden text-deep antialiased select-none sm:select-auto pb-24 lg:pb-0">
       <IslamicCelestialBackground />
-      <header className="relative z-10 px-4 sm:px-6 py-5 flex items-center justify-between gap-2 sm:gap-4 max-w-7xl mx-auto">
-        <Link to="/" className="flex items-center gap-3">
-          <div className="w-9 h-9 rounded-full bg-brand grid place-items-center text-primary-foreground font-display font-bold shadow-md shadow-brand/20">
-            S
+
+      {/* Header — Fully optimized for mobile & desktop */}
+      <header className="relative z-20 px-3 sm:px-6 py-3.5 sm:py-5 flex items-center justify-between gap-2 sm:gap-4 max-w-7xl mx-auto border-b border-hairline/60 lg:border-none">
+        {/* Brand with Na'l Shareef & Green Qubbah Logo */}
+        <Link to="/" className="flex items-center gap-2.5 sm:gap-3 group shrink-0 no-underline">
+          <ShareekLogo className="size-9 sm:size-10 shrink-0 drop-shadow-sm group-hover:scale-105 transition-transform" />
+          <div className="flex flex-col">
+            <div className="flex items-baseline gap-1.5">
+              <span className="text-lg sm:text-xl font-semibold text-deep tracking-tight font-display">
+                Shareek
+              </span>
+              <span className="text-xs font-arabic text-brand/80 font-normal">
+                شَرِيك
+              </span>
+            </div>
+            <span className="hidden sm:inline text-[9px] uppercase tracking-[0.22em] text-brand/60 -mt-0.5">
+              Prayer · Quran · Sunnah
+            </span>
           </div>
-          <span className="text-lg font-semibold text-deep tracking-tight font-display">
-            Shareek
-          </span>
-          <span className="hidden sm:inline text-[10px] uppercase tracking-[0.2em] text-brand/60 mt-0.5">
-            شَرِيك · Prayer &amp; Quran
-          </span>
         </Link>
 
-        <nav className="hidden lg:flex items-center gap-5 text-sm font-medium text-deep/70">
+        {/* Desktop Nav — Zero underlines */}
+        <nav className="hidden lg:flex items-center gap-1.5 xl:gap-2 text-sm font-medium text-deep/75">
           {NAV.map((item) => (
             <Link
               key={item.to}
               to={item.to}
-              activeProps={{ className: "text-brand font-semibold" }}
+              activeProps={{ className: "text-brand bg-brand/10 font-semibold" }}
               activeOptions={{ exact: item.to === "/" }}
-              className="hover:text-brand transition"
+              className="px-3 py-1.5 rounded-full hover:bg-mist hover:text-deep transition no-underline"
             >
               {item.label}
             </Link>
           ))}
         </nav>
 
-        <div className="flex items-center gap-2 sm:gap-3">
+        {/* Right Actions */}
+        <div className="flex items-center gap-1.5 sm:gap-3">
           <AppExtras />
           <ThemeToggle />
-          <a
-            href="#contribute"
-            className="hidden xl:inline text-sm font-semibold text-deep/70 hover:text-brand transition whitespace-nowrap"
-          >
-            Contribute
-          </a>
           <Link
             to="/about"
-            className="text-sm font-semibold text-brand hover:text-deep transition whitespace-nowrap"
+            className="hidden sm:inline text-xs sm:text-sm font-semibold text-brand hover:text-deep transition whitespace-nowrap px-2 py-1 rounded-full no-underline"
           >
             About
           </Link>
-          <span className="hidden sm:inline text-xs font-medium text-deep/65 bg-panel/80 backdrop-blur-md px-3.5 py-2 rounded-full border border-hairline shadow-2xs">
+          <span className="hidden md:inline text-xs font-medium text-deep/65 bg-panel/80 backdrop-blur-md px-3.5 py-2 rounded-full border border-hairline shadow-2xs">
             {location.name}
             {location.region ? `, ${location.region}` : ""}
           </span>
           <button
             onClick={() => setOpen(true)}
-            className="bg-brand text-primary-foreground text-xs sm:text-sm font-semibold px-4 py-2.5 rounded-full shadow-md shadow-brand/20 hover:bg-deep transition whitespace-nowrap cursor-pointer"
+            className="bg-brand text-primary-foreground text-xs sm:text-sm font-semibold px-3 sm:px-4 py-2 sm:py-2.5 rounded-full shadow-md shadow-brand/20 hover:bg-deep transition whitespace-nowrap cursor-pointer shrink-0"
           >
-            Set Location
+            <span className="sm:inline hidden">Set Location</span>
+            <span className="inline sm:hidden">Location</span>
           </button>
         </div>
       </header>
 
+      {/* Main Content Area */}
       <div className="relative z-10">{children}</div>
 
       <ContributeSection />
 
-      <footer className="relative z-10 max-w-7xl mx-auto px-6 py-10 flex flex-col sm:flex-row items-start sm:items-center justify-between gap-3 text-xs text-deep/50">
+      {/* Desktop Footer */}
+      <footer className="relative z-10 max-w-7xl mx-auto px-6 py-10 hidden lg:flex flex-row items-center justify-between gap-3 text-xs text-deep/50 border-t border-hairline">
         <p>
-          Shareek (شَرِيك) · prayer times, Quran, Masajid, 99 Names, Adhkar, Qibla, dhikr and a daily worship tracker in one place.
+          Shareek (شَرِيك) · Prayer times, Quran, Masajid, 99 Names, Adhkar, Qibla, and worship tracker.
         </p>
         <div className="flex gap-5">
-          <a href="#contribute" className="font-semibold text-brand hover:text-deep transition">
+          <a href="#contribute" className="font-semibold text-brand hover:text-deep transition no-underline">
             Contribute
           </a>
-          <Link to="/about" className="font-semibold text-brand hover:text-deep transition">
+          <Link to="/about" className="font-semibold text-brand hover:text-deep transition no-underline">
             About
           </Link>
-          <Link to="/methodology" className="font-semibold text-brand hover:text-deep transition">
+          <Link to="/methodology" className="font-semibold text-brand hover:text-deep transition no-underline">
             View methodology →
           </Link>
         </div>
       </footer>
 
-      <nav className="lg:hidden sticky bottom-0 z-20 glass-panel rounded-none border-x-0 border-b-0 flex overflow-x-auto px-2 py-2">
-        {NAV.map((item) => (
-          <Link
-            key={item.to}
-            to={item.to}
-            activeProps={{ className: "text-brand bg-mist/70" }}
-            activeOptions={{ exact: item.to === "/" }}
-            className="min-w-[74px] flex-1 text-center text-[11px] font-medium text-deep/60 py-2 rounded-xl"
-          >
-            {item.label}
-          </Link>
-        ))}
+      {/* Bottom Mobile Floating Navigation Bar — Highly Ergonomic with Zero Underlines */}
+      <nav className="lg:hidden fixed bottom-0 inset-x-0 z-40 bg-panel/90 backdrop-blur-xl border-t border-hairline/80 px-2 pt-1.5 pb-[max(0.375rem,env(safe-area-inset-bottom))] shadow-lg">
+        <div className="flex items-center justify-between gap-1 overflow-x-auto no-scrollbar scroll-smooth">
+          {NAV.map((item) => (
+            <Link
+              key={item.to}
+              to={item.to}
+              activeProps={{ className: "text-brand bg-brand/10 font-semibold" }}
+              activeOptions={{ exact: item.to === "/" }}
+              className="flex-1 min-w-[56px] py-1.5 px-1 rounded-2xl flex flex-col items-center justify-center gap-0.5 text-deep/65 hover:text-brand transition no-underline select-none"
+            >
+              <span className="text-base leading-none">{item.icon}</span>
+              <span className="text-[10px] leading-tight font-medium tracking-tight whitespace-nowrap">
+                {item.short}
+              </span>
+            </Link>
+          ))}
+        </div>
       </nav>
 
       <LocationDialog open={open} onClose={() => setOpen(false)} />

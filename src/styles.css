@@ -149,6 +149,11 @@
 @layer base {
   * {
     border-color: var(--color-border);
+    -webkit-tap-highlight-color: transparent;
+  }
+
+  a, a:hover, a:focus, a:active, button, button:hover, button:focus, button:active {
+    text-decoration: none !important;
   }
 
   body {
@@ -156,12 +161,21 @@
     color: var(--color-deep);
     font-family: var(--font-sans);
     -webkit-font-smoothing: antialiased;
+    touch-action: manipulation;
   }
 
   h1,
   h2,
   h3 {
     font-family: var(--font-display);
+  }
+}
+
+@utility no-scrollbar {
+  -ms-overflow-style: none;
+  scrollbar-width: none;
+  &::-webkit-scrollbar {
+    display: none;
   }
 }
 
