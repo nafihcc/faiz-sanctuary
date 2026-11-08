@@ -9,7 +9,6 @@ import { ShareekLogo } from "@/components/ShareekLogo";
 const NOTIFY_KEY = "shareek.notify";
 const ALERT_PRAYERS: PrayerKey[] = ["fajr", "dhuhr", "asr", "maghrib", "isha"];
 const REMINDER_MS = 15 * 60_000;
-const AUTO_DISMISS_MS = 8_000; // Active for 8 seconds, then automatically disappears
 
 interface InstallEvent extends Event {
   prompt: () => Promise<void>;
@@ -88,15 +87,7 @@ export function AppExtras() {
     };
   }, []);
 
-  // Automatically hide the install button after AUTO_DISMISS_MS (8 seconds)
-  useEffect(() => {
-    if (!showInstall) return;
-    const timer = setTimeout(() => {
-      setShowInstall(false);
-      setInstallTip(null);
-    }, AUTO_DISMISS_MS);
-    return () => clearTimeout(timer);
-  }, [showInstall]);
+
 
   useEffect(() => {
     if (!notify) return;
@@ -174,7 +165,7 @@ export function AppExtras() {
     setInstallTip(
       ios
         ? "Tap Share in Safari, then choose “Add to Home Screen”."
-        : "Use your browser menu (⋮) → “Install app” or “Add to Home Screen”."
+        : "Use browser menu (⋮) → “Install app”, or download the native Android APK (.apk) directly."
     );
   };
 
@@ -192,18 +183,11 @@ export function AppExtras() {
             <button
               type="button"
               onClick={handleInstallClick}
-              className="relative overflow-hidden inline-flex items-center gap-1.5 px-3 py-2 rounded-full bg-panel border border-brand/25 text-brand text-xs font-semibold shadow-xs hover:bg-mist transition cursor-pointer whitespace-nowrap"
-              title="Install Shareek App"
+              className="relative inline-flex items-center gap-1.5 px-3 py-2 rounded-full bg-panel border border-brand/25 text-brand text-xs font-semibold shadow-xs hover:bg-mist transition cursor-pointer whitespace-nowrap"
+              title="Install Shareek App / Download APK"
             >
               <Download className="size-3.5 shrink-0" />
               <span>Install App</span>
-              {/* Subtle auto-disappear timer bar */}
-              <motion.span
-                initial={{ width: "100%" }}
-                animate={{ width: "0%" }}
-                transition={{ duration: AUTO_DISMISS_MS / 1000, ease: "linear" }}
-                className="absolute bottom-0 left-0 h-0.5 bg-brand/40"
-              />
             </button>
           </motion.div>
         )}

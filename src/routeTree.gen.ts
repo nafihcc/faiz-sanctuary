@@ -13,10 +13,12 @@ import { Route as IndexRouteImport } from './routes/index'
 import { Route as AboutRouteImport } from './routes/about'
 import { Route as AsmaulHusnaRouteImport } from './routes/asmaul-husna'
 import { Route as CalendarRouteImport } from './routes/calendar'
+import { Route as ContributeRouteImport } from './routes/contribute'
 import { Route as DhikrRouteImport } from './routes/dhikr'
 import { Route as DuasRouteImport } from './routes/duas'
 import { Route as MasjidRouteImport } from './routes/masjid'
 import { Route as MethodologyRouteImport } from './routes/methodology'
+import { Route as PrayFirstRouteImport } from './routes/pray-first'
 import { Route as QiblaRouteImport } from './routes/qibla'
 import { Route as QuranRouteImport } from './routes/quran'
 import { Route as TrackerRouteImport } from './routes/tracker'
@@ -41,6 +43,11 @@ const CalendarRoute = CalendarRouteImport.update({
   path: '/calendar',
   getParentRoute: () => rootRouteImport,
 } as any)
+const ContributeRoute = ContributeRouteImport.update({
+  id: '/contribute',
+  path: '/contribute',
+  getParentRoute: () => rootRouteImport,
+} as any)
 const DhikrRoute = DhikrRouteImport.update({
   id: '/dhikr',
   path: '/dhikr',
@@ -59,6 +66,11 @@ const MasjidRoute = MasjidRouteImport.update({
 const MethodologyRoute = MethodologyRouteImport.update({
   id: '/methodology',
   path: '/methodology',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const PrayFirstRoute = PrayFirstRouteImport.update({
+  id: '/pray-first',
+  path: '/pray-first',
   getParentRoute: () => rootRouteImport,
 } as any)
 const QiblaRoute = QiblaRouteImport.update({
@@ -82,10 +94,12 @@ export interface FileRoutesByFullPath {
   '/about': typeof AboutRoute
   '/asmaul-husna': typeof AsmaulHusnaRoute
   '/calendar': typeof CalendarRoute
+  '/contribute': typeof ContributeRoute
   '/dhikr': typeof DhikrRoute
   '/duas': typeof DuasRoute
   '/masjid': typeof MasjidRoute
   '/methodology': typeof MethodologyRoute
+  '/pray-first': typeof PrayFirstRoute
   '/qibla': typeof QiblaRoute
   '/quran': typeof QuranRoute
   '/tracker': typeof TrackerRoute
@@ -95,10 +109,12 @@ export interface FileRoutesByTo {
   '/about': typeof AboutRoute
   '/asmaul-husna': typeof AsmaulHusnaRoute
   '/calendar': typeof CalendarRoute
+  '/contribute': typeof ContributeRoute
   '/dhikr': typeof DhikrRoute
   '/duas': typeof DuasRoute
   '/masjid': typeof MasjidRoute
   '/methodology': typeof MethodologyRoute
+  '/pray-first': typeof PrayFirstRoute
   '/qibla': typeof QiblaRoute
   '/quran': typeof QuranRoute
   '/tracker': typeof TrackerRoute
@@ -109,10 +125,12 @@ export interface FileRoutesById {
   '/about': typeof AboutRoute
   '/asmaul-husna': typeof AsmaulHusnaRoute
   '/calendar': typeof CalendarRoute
+  '/contribute': typeof ContributeRoute
   '/dhikr': typeof DhikrRoute
   '/duas': typeof DuasRoute
   '/masjid': typeof MasjidRoute
   '/methodology': typeof MethodologyRoute
+  '/pray-first': typeof PrayFirstRoute
   '/qibla': typeof QiblaRoute
   '/quran': typeof QuranRoute
   '/tracker': typeof TrackerRoute
@@ -124,10 +142,12 @@ export interface FileRouteTypes {
     | '/about'
     | '/asmaul-husna'
     | '/calendar'
+    | '/contribute'
     | '/dhikr'
     | '/duas'
     | '/masjid'
     | '/methodology'
+    | '/pray-first'
     | '/qibla'
     | '/quran'
     | '/tracker'
@@ -137,10 +157,12 @@ export interface FileRouteTypes {
     | '/about'
     | '/asmaul-husna'
     | '/calendar'
+    | '/contribute'
     | '/dhikr'
     | '/duas'
     | '/masjid'
     | '/methodology'
+    | '/pray-first'
     | '/qibla'
     | '/quran'
     | '/tracker'
@@ -150,10 +172,12 @@ export interface FileRouteTypes {
     | '/about'
     | '/asmaul-husna'
     | '/calendar'
+    | '/contribute'
     | '/dhikr'
     | '/duas'
     | '/masjid'
     | '/methodology'
+    | '/pray-first'
     | '/qibla'
     | '/quran'
     | '/tracker'
@@ -164,10 +188,12 @@ export interface RootRouteChildren {
   AboutRoute: typeof AboutRoute
   AsmaulHusnaRoute: typeof AsmaulHusnaRoute
   CalendarRoute: typeof CalendarRoute
+  ContributeRoute: typeof ContributeRoute
   DhikrRoute: typeof DhikrRoute
   DuasRoute: typeof DuasRoute
   MasjidRoute: typeof MasjidRoute
   MethodologyRoute: typeof MethodologyRoute
+  PrayFirstRoute: typeof PrayFirstRoute
   QiblaRoute: typeof QiblaRoute
   QuranRoute: typeof QuranRoute
   TrackerRoute: typeof TrackerRoute
@@ -203,6 +229,13 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof CalendarRouteImport
       parentRoute: typeof rootRouteImport
     }
+    '/contribute': {
+      id: '/contribute'
+      path: '/contribute'
+      fullPath: '/contribute'
+      preLoaderRoute: typeof ContributeRouteImport
+      parentRoute: typeof rootRouteImport
+    }
     '/dhikr': {
       id: '/dhikr'
       path: '/dhikr'
@@ -229,6 +262,13 @@ declare module '@tanstack/react-router' {
       path: '/methodology'
       fullPath: '/methodology'
       preLoaderRoute: typeof MethodologyRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/pray-first': {
+      id: '/pray-first'
+      path: '/pray-first'
+      fullPath: '/pray-first'
+      preLoaderRoute: typeof PrayFirstRouteImport
       parentRoute: typeof rootRouteImport
     }
     '/qibla': {
@@ -260,10 +300,12 @@ const rootRouteChildren: RootRouteChildren = {
   AboutRoute: AboutRoute,
   AsmaulHusnaRoute: AsmaulHusnaRoute,
   CalendarRoute: CalendarRoute,
+  ContributeRoute: ContributeRoute,
   DhikrRoute: DhikrRoute,
   DuasRoute: DuasRoute,
   MasjidRoute: MasjidRoute,
   MethodologyRoute: MethodologyRoute,
+  PrayFirstRoute: PrayFirstRoute,
   QiblaRoute: QiblaRoute,
   QuranRoute: QuranRoute,
   TrackerRoute: TrackerRoute,

@@ -5,7 +5,6 @@ import { LocationDialog } from "@/components/LocationDialog";
 import { ThemeToggle } from "@/components/ThemeToggle";
 import { AppExtras } from "@/components/AppExtras";
 import { IslamicCelestialBackground } from "@/components/IslamicCelestialBackground";
-import { ContributeSection } from "@/components/ContributeSection";
 import { ShareekLogo } from "@/components/ShareekLogo";
 
 const NAV = [
@@ -17,6 +16,7 @@ const NAV = [
   { to: "/duas", label: "Adhkar & Duas", short: "Duas", icon: "🤲" },
   { to: "/dhikr", label: "Dhikr", short: "Dhikr", icon: "📿" },
   { to: "/tracker", label: "Tracker", short: "Tracker", icon: "📊" },
+  { to: "/pray-first", label: "Pray First", short: "Pray First", icon: "🛡️" },
   { to: "/calendar", label: "Calendar", short: "Calendar", icon: "🗓️" },
 ] as const;
 
@@ -90,17 +90,15 @@ export function AppShell({ children }: { children: ReactNode }) {
       {/* Main Content Area */}
       <div className="relative z-10">{children}</div>
 
-      <ContributeSection />
-
       {/* Desktop Footer */}
       <footer className="relative z-10 max-w-7xl mx-auto px-6 py-10 hidden lg:flex flex-row items-center justify-between gap-3 text-xs text-deep/50 border-t border-hairline">
         <p>
           Shareek (شَرِيك) · Prayer times, Quran, Masajid, 99 Names, Adhkar, Qibla, and worship tracker.
         </p>
         <div className="flex gap-5">
-          <a href="#contribute" className="font-semibold text-brand hover:text-deep transition no-underline">
+          <Link to="/contribute" className="font-semibold text-brand hover:text-deep transition no-underline">
             Contribute
-          </a>
+          </Link>
           <Link to="/about" className="font-semibold text-brand hover:text-deep transition no-underline">
             About
           </Link>
