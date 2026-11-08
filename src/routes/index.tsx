@@ -82,10 +82,11 @@ function Home() {
         variants={container}
         initial="hidden"
         animate="show"
-        className="pt-6 grid grid-cols-2 sm:grid-cols-4 lg:grid-cols-4 xl:grid-cols-8 gap-3"
+        className="pt-6 grid grid-cols-2 sm:grid-cols-4 lg:grid-cols-4 xl:grid-cols-9 gap-3"
       >
         {(
           [
+            { to: "/pray-first", icon: "🛡️", title: "Pray First", sub: "Adhan & app pause", tint: "bg-emerald-50 text-emerald-700" },
             { to: "/quran", icon: "📖", title: "Quran", sub: "Mushaf & audio", tint: "bg-sky-50 text-sky-700" },
             { to: "/masjid", icon: "🕌", title: "Masajid", sub: "Spatial radar", tint: "bg-cyan-50 text-cyan-800" },
             { to: "/asmaul-husna", icon: "✨", title: "99 Names", sub: "Asmaul Husna", tint: "bg-amber-50 text-amber-800" },
@@ -108,7 +109,7 @@ function Home() {
               className="glass-panel group relative block h-full rounded-3xl p-4 sm:p-5 flex flex-col justify-center gap-3 shadow-2xs hover:shadow-lg hover:border-brand/30 transition-all overflow-hidden"
             >
               <div className="absolute inset-0 bg-gradient-to-br from-brand/5 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300 pointer-events-none" />
-              <span className={`text-2xl w-11 h-11 rounded-full ${t.tint} grid place-items-center group-hover:scale-110 shadow-2xs transition-all`}>
+              <span data-ui="tile-icon" className={`text-2xl w-11 h-11 rounded-full ${t.tint} grid place-items-center group-hover:scale-110 shadow-2xs transition-all`}>
                 {t.icon}
               </span>
               <span className="relative z-10">

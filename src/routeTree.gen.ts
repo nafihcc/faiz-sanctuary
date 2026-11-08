@@ -17,6 +17,7 @@ import { Route as DhikrRouteImport } from './routes/dhikr'
 import { Route as DuasRouteImport } from './routes/duas'
 import { Route as MasjidRouteImport } from './routes/masjid'
 import { Route as MethodologyRouteImport } from './routes/methodology'
+import { Route as PrayFirstRouteImport } from './routes/pray-first'
 import { Route as QiblaRouteImport } from './routes/qibla'
 import { Route as QuranRouteImport } from './routes/quran'
 import { Route as TrackerRouteImport } from './routes/tracker'
@@ -61,6 +62,11 @@ const MethodologyRoute = MethodologyRouteImport.update({
   path: '/methodology',
   getParentRoute: () => rootRouteImport,
 } as any)
+const PrayFirstRoute = PrayFirstRouteImport.update({
+  id: '/pray-first',
+  path: '/pray-first',
+  getParentRoute: () => rootRouteImport,
+} as any)
 const QiblaRoute = QiblaRouteImport.update({
   id: '/qibla',
   path: '/qibla',
@@ -86,6 +92,7 @@ export interface FileRoutesByFullPath {
   '/duas': typeof DuasRoute
   '/masjid': typeof MasjidRoute
   '/methodology': typeof MethodologyRoute
+  '/pray-first': typeof PrayFirstRoute
   '/qibla': typeof QiblaRoute
   '/quran': typeof QuranRoute
   '/tracker': typeof TrackerRoute
@@ -99,6 +106,7 @@ export interface FileRoutesByTo {
   '/duas': typeof DuasRoute
   '/masjid': typeof MasjidRoute
   '/methodology': typeof MethodologyRoute
+  '/pray-first': typeof PrayFirstRoute
   '/qibla': typeof QiblaRoute
   '/quran': typeof QuranRoute
   '/tracker': typeof TrackerRoute
@@ -113,6 +121,7 @@ export interface FileRoutesById {
   '/duas': typeof DuasRoute
   '/masjid': typeof MasjidRoute
   '/methodology': typeof MethodologyRoute
+  '/pray-first': typeof PrayFirstRoute
   '/qibla': typeof QiblaRoute
   '/quran': typeof QuranRoute
   '/tracker': typeof TrackerRoute
@@ -128,6 +137,7 @@ export interface FileRouteTypes {
     | '/duas'
     | '/masjid'
     | '/methodology'
+    | '/pray-first'
     | '/qibla'
     | '/quran'
     | '/tracker'
@@ -141,6 +151,7 @@ export interface FileRouteTypes {
     | '/duas'
     | '/masjid'
     | '/methodology'
+    | '/pray-first'
     | '/qibla'
     | '/quran'
     | '/tracker'
@@ -154,6 +165,7 @@ export interface FileRouteTypes {
     | '/duas'
     | '/masjid'
     | '/methodology'
+    | '/pray-first'
     | '/qibla'
     | '/quran'
     | '/tracker'
@@ -168,6 +180,7 @@ export interface RootRouteChildren {
   DuasRoute: typeof DuasRoute
   MasjidRoute: typeof MasjidRoute
   MethodologyRoute: typeof MethodologyRoute
+  PrayFirstRoute: typeof PrayFirstRoute
   QiblaRoute: typeof QiblaRoute
   QuranRoute: typeof QuranRoute
   TrackerRoute: typeof TrackerRoute
@@ -231,6 +244,13 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof MethodologyRouteImport
       parentRoute: typeof rootRouteImport
     }
+    '/pray-first': {
+      id: '/pray-first'
+      path: '/pray-first'
+      fullPath: '/pray-first'
+      preLoaderRoute: typeof PrayFirstRouteImport
+      parentRoute: typeof rootRouteImport
+    }
     '/qibla': {
       id: '/qibla'
       path: '/qibla'
@@ -264,6 +284,7 @@ const rootRouteChildren: RootRouteChildren = {
   DuasRoute: DuasRoute,
   MasjidRoute: MasjidRoute,
   MethodologyRoute: MethodologyRoute,
+  PrayFirstRoute: PrayFirstRoute,
   QiblaRoute: QiblaRoute,
   QuranRoute: QuranRoute,
   TrackerRoute: TrackerRoute,

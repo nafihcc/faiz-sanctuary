@@ -15,6 +15,17 @@
     <link rel="manifest" href="/manifest.webmanifest" />
     <link rel="apple-touch-icon" href="/apple-touch-icon.png" />
     <meta name="theme-color" content="#1f2f57" />
+    <script>
+      // Apply the saved design before first paint so there is no flash of the wrong look.
+      (function () {
+        var design = "pro";
+        try {
+          var saved = localStorage.getItem("faiz.design");
+          if (saved === "classic" || saved === "pro") design = saved;
+        } catch (e) {}
+        document.documentElement.setAttribute("data-design", design);
+      })();
+    </script>
     <link rel="preconnect" href="https://fonts.googleapis.com" />
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
     <link

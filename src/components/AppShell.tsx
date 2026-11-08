@@ -3,6 +3,8 @@ import { useState, type ReactNode } from "react";
 import { useLocationSettings } from "@/context/location";
 import { LocationDialog } from "@/components/LocationDialog";
 import { ThemeToggle } from "@/components/ThemeToggle";
+import { DesignToggle } from "@/components/DesignToggle";
+import { PrayFirstSync } from "@/components/PrayFirstSync";
 import { AppExtras } from "@/components/AppExtras";
 import { IslamicCelestialBackground } from "@/components/IslamicCelestialBackground";
 import { ContributeSection } from "@/components/ContributeSection";
@@ -10,6 +12,7 @@ import { ShareekLogo } from "@/components/ShareekLogo";
 
 const NAV = [
   { to: "/", label: "Prayer Times", short: "Prayer", icon: "🕌" },
+  { to: "/pray-first", label: "Pray First", short: "Pray First", icon: "🛡️" },
   { to: "/qibla", label: "Qibla", short: "Qibla", icon: "🧭" },
   { to: "/quran", label: "Quran", short: "Quran", icon: "📖" },
   { to: "/masjid", label: "Masajid", short: "Masajid", icon: "📍" },
@@ -26,9 +29,13 @@ export function AppShell({ children }: { children: ReactNode }) {
 
   return (
     <div className="relative min-h-screen bg-surface overflow-x-hidden text-deep antialiased select-none sm:select-auto pb-24 lg:pb-0">
-      <IslamicCelestialBackground />
+      <div data-ui="celestial">
+        <IslamicCelestialBackground />
+      </div>
+      <PrayFirstSync />
 
       {/* Header — Fully optimized for mobile & desktop */}
+      <div data-ui="header-bar" className="relative z-20">
       <header className="relative z-20 px-3 sm:px-6 py-3.5 sm:py-5 flex items-center justify-between gap-2 sm:gap-4 max-w-7xl mx-auto border-b border-hairline/60 lg:border-none">
         {/* Brand with Na'l Shareef & Green Qubbah Logo */}
         <Link to="/" className="flex items-center gap-2.5 sm:gap-3 group shrink-0 no-underline">
@@ -66,6 +73,7 @@ export function AppShell({ children }: { children: ReactNode }) {
         {/* Right Actions */}
         <div className="flex items-center gap-1.5 sm:gap-3">
           <AppExtras />
+          <DesignToggle />
           <ThemeToggle />
           <Link
             to="/about"
@@ -86,6 +94,7 @@ export function AppShell({ children }: { children: ReactNode }) {
           </button>
         </div>
       </header>
+      </div>
 
       {/* Main Content Area */}
       <div className="relative z-10">{children}</div>
@@ -111,7 +120,7 @@ export function AppShell({ children }: { children: ReactNode }) {
       </footer>
 
       {/* Bottom Mobile Floating Navigation Bar — Highly Ergonomic with Zero Underlines */}
-      <nav className="lg:hidden fixed bottom-0 inset-x-0 z-40 bg-panel/90 backdrop-blur-xl border-t border-hairline/80 px-2 pt-1.5 pb-[max(0.375rem,env(safe-area-inset-bottom))] shadow-lg">
+      <nav data-ui="mobile-nav" className="lg:hidden fixed bottom-0 inset-x-0 z-40 bg-panel/90 backdrop-blur-xl border-t border-hairline/80 px-2 pt-1.5 pb-[max(0.375rem,env(safe-area-inset-bottom))] shadow-lg">
         <div className="flex items-center justify-between gap-1 overflow-x-auto no-scrollbar scroll-smooth">
           {NAV.map((item) => (
             <Link
@@ -121,7 +130,7 @@ export function AppShell({ children }: { children: ReactNode }) {
               activeOptions={{ exact: item.to === "/" }}
               className="flex-1 min-w-[56px] py-1.5 px-1 rounded-2xl flex flex-col items-center justify-center gap-0.5 text-deep/65 hover:text-brand transition no-underline select-none"
             >
-              <span className="text-base leading-none">{item.icon}</span>
+              <span data-ui="nav-icon" className="text-base leading-none">{item.icon}</span>
               <span className="text-[10px] leading-tight font-medium tracking-tight whitespace-nowrap">
                 {item.short}
               </span>

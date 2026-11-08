@@ -111,7 +111,7 @@ function RootShell({ children }: { children: ReactNode }) {
   // Static GitHub Pages build mounts into gh-index.html, which already owns <html>/<head>.
   if (import.meta.env['VITE_STATIC_SPA']) return <>{children}</>;
   return (
-    <html lang="en">
+    <html lang="en" data-design="pro" suppressHydrationWarning>
       <head>
         <HeadContent />
       </head>
