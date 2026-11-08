@@ -57,11 +57,27 @@ export function ExecutiveDashboard({ onOpenLocation }: { onOpenLocation: () => v
   const bearing = qiblaBearing(location.latitude, location.longitude);
 
   // Pray First configuration state
-  const [prayConfig, setPrayConfig] = useState<PrayFirstConfig>(loadPrayFirstConfig);
+  const [prayConfig, setPrayConfig] = useState<PrayFirstConfig>(() => {
+    try {
+      return loadPrayFirstConfig();
+    } catch {
+      return {
+        shieldEnabled: true,
+        adhanEnabled: true,
+        selectedAdhan: "makkah",
+        prePrayerBufferMinutes: 5,
+        lockdownDurationMinutes: 20,
+        strictMode: false,
+        blockedAppIds: ["instagram", "tiktok", "youtube", "whatsapp"],
+        customApps: [],
+        perPrayerAdhan: { fajr: true, dhuhr: true, asr: true, maghrib: true, isha: true },
+      };
+    }
+  });
   const [isOverlayOpen, setIsOverlayOpen] = useState(false);
 
   const toggleShieldMaster = () => {
-    const updated: PrayFirstConfig = { ...prayConfig, isEnabled: !prayConfig.isEnabled };
+    const updated: PrayFirstConfig = { ...prayConfig, shieldEnabled: !prayConfig.shieldEnabled };
     setPrayConfig(updated);
     savePrayFirstConfig(updated);
   };
@@ -77,10 +93,10 @@ export function ExecutiveDashboard({ onOpenLocation }: { onOpenLocation: () => v
 
   // Celestial solar arc computation
   const solarArcMetrics = useMemo(() => {
-    if (!result) return { progress: 0.5, sunElevation: 45, phase: "Day" };
+    if (!result) return { progress: 0.5, sunElevation: 45, phase: "Solar Transit" };
     const fajrTime = result.times.fajr.getTime();
     const ishaTime = result.times.isha.getTime();
-    const nowTime = now.getTime();
+    const nowTime = (now ?? new Date()).getTime();
     const span = Math.max(1, ishaTime - fajrTime);
     const raw = (nowTime - fajrTime) / span;
     const progress = Math.min(Math.max(raw, 0), 1);
@@ -103,7 +119,7 @@ export function ExecutiveDashboard({ onOpenLocation }: { onOpenLocation: () => v
   }, [result, now]);
 
   const activeBlockedApps = PRESET_APPS.filter((a) =>
-    prayConfig.blockedAppIds.includes(a.id)
+    (prayConfig?.blockedAppIds ?? []).includes(a.id)
   );
 
   return (
@@ -164,7 +180,7 @@ export function ExecutiveDashboard({ onOpenLocation }: { onOpenLocation: () => v
               <div className="flex items-center gap-2">
                 <span className="size-2 rounded-full bg-emerald-500 animate-ping" />
                 <span className="text-xs font-mono text-deep/60 tabular-nums">
-                  {now.toLocaleTimeString([], { hour: "2-digit", minute: "2-digit", second: "2-digit" })}
+                  {(now ?? new Date()).toLocaleTimeString([], { hour: "2-digit", minute: "2-digit", second: "2-digit" })}
                 </span>
               </div>
             </div>
@@ -245,12 +261,12 @@ export function ExecutiveDashboard({ onOpenLocation }: { onOpenLocation: () => v
               </div>
               <span
                 className={`text-[10px] uppercase font-mono font-bold px-2 py-0.5 rounded-full ${
-                  prayConfig.isEnabled
+                  prayConfig.shieldEnabled
                     ? "bg-emerald-500/15 text-emerald-700 dark:text-emerald-400 border border-emerald-500/20"
                     : "bg-deep/10 text-deep/50"
                 }`}
               >
-                {prayConfig.isEnabled ? "Shield Active" : "Shield Paused"}
+                {prayConfig.shieldEnabled ? "Shield Active" : "Shield Paused"}
               </span>
             </div>
 
@@ -268,7 +284,7 @@ export function ExecutiveDashboard({ onOpenLocation }: { onOpenLocation: () => v
                 type="button"
                 onClick={toggleShieldMaster}
                 className={`p-3 rounded-2xl border text-left transition flex items-center justify-between ${
-                  prayConfig.isEnabled
+                  prayConfig.shieldEnabled
                     ? "bg-brand/10 border-brand/40 text-brand"
                     : "bg-panel border-hairline text-deep/60 hover:bg-mist"
                 }`}
@@ -278,10 +294,10 @@ export function ExecutiveDashboard({ onOpenLocation }: { onOpenLocation: () => v
                     App Blocker
                   </span>
                   <span className="text-xs font-semibold text-deep mt-0.5 block">
-                    {prayConfig.isEnabled ? "Armed (Guarding)" : "Disarmed"}
+                    {prayConfig.shieldEnabled ? "Armed (Guarding)" : "Disarmed"}
                   </span>
                 </div>
-                {prayConfig.isEnabled ? (
+                {prayConfig.shieldEnabled ? (
                   <ShieldCheck className="size-5 text-brand shrink-0" />
                 ) : (
                   <ShieldAlert className="size-5 text-deep/40 shrink-0" />
@@ -316,7 +332,7 @@ export function ExecutiveDashboard({ onOpenLocation }: { onOpenLocation: () => v
             {/* Shielded Apps Visual Dock */}
             <div className="mt-4 pt-3 border-t border-hairline/60">
               <div className="flex items-center justify-between text-xs text-deep/60 mb-2 font-mono">
-                <span>Shielded Distractions ({prayConfig.blockedAppIds.length})</span>
+                <span>Shielded Distractions ({prayConfig?.blockedAppIds?.length ?? 0})</span>
                 <span className="text-[11px] text-brand font-sans">
                   {prayConfig.lockdownDurationMinutes} min lockdown
                 </span>
@@ -383,7 +399,7 @@ export function ExecutiveDashboard({ onOpenLocation }: { onOpenLocation: () => v
           {PRAYER_ORDER.map((key) => {
             const isNext = next?.key === key;
             const prayerTime = result?.times[key];
-            const hasPassed = prayerTime ? prayerTime.getTime() < now.getTime() : false;
+            const hasPassed = prayerTime && now ? prayerTime.getTime() < now.getTime() : false;
 
             return (
               <div

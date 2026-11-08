@@ -60,12 +60,12 @@ function ErrorComponent({ error, reset }: { error: unknown; reset: () => void })
           >
             Try again
           </button>
-          <a
-            href="/"
+          <Link
+            to="/"
             className="inline-flex items-center justify-center rounded-xl border border-hairline bg-panel/60 px-4 py-2 text-sm font-medium text-deep transition-colors hover:bg-mist"
           >
             Go home
-          </a>
+          </Link>
         </div>
       </div>
     </div>
