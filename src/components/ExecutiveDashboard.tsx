@@ -180,7 +180,7 @@ export function ExecutiveDashboard({ onOpenLocation }: { onOpenLocation: () => v
               <div className="flex items-center gap-2">
                 <span className="size-2 rounded-full bg-emerald-500 animate-ping" />
                 <span className="text-xs font-mono text-deep/60 tabular-nums">
-                  {(now ?? new Date()).toLocaleTimeString([], { hour: "2-digit", minute: "2-digit", second: "2-digit" })}
+                  {(now ?? new Date()).toLocaleTimeString(undefined, { hour: "2-digit", minute: "2-digit", second: "2-digit" })}
                 </span>
               </div>
             </div>

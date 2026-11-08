@@ -4,10 +4,12 @@ import { RouterProvider } from "@tanstack/react-router";
 import "./styles.css";
 import { getRouter } from "./router";
 
-// Normalize trailing slash when visiting base path without slash: e.g. /faiz-sanctuary -> /faiz-sanctuary/
+// Normalize paths on GitHub Pages:
 try {
   const base = (import.meta.env.BASE_URL || "/").replace(/\/$/, "");
-  if (base && window.location.pathname === base) {
+  if (base && (window.location.pathname === "/" || window.location.pathname === "")) {
+    window.location.replace(base + "/" + window.location.search + window.location.hash);
+  } else if (base && window.location.pathname === base) {
     window.history.replaceState(
       null,
       "",
@@ -41,10 +43,11 @@ class RootErrorBoundary extends Component<
             onClick={() => {
               try {
                 localStorage.clear();
+                sessionStorage.clear();
               } catch {
                 /* ignore */
               }
-              window.location.href = import.meta.env.BASE_URL || "/";
+              window.location.href = import.meta.env.BASE_URL || "/faiz-sanctuary/";
             }}
             style={{
               marginTop: "1.5rem",

@@ -16,14 +16,18 @@ interface InstallEvent extends Event {
 }
 
 function isPreviewHost() {
-  const h = window.location.hostname;
-  return (
-    window.self !== window.top ||
-    h.startsWith("id-preview--") ||
-    h.startsWith("preview--") ||
-    h.endsWith("lovableproject.com") ||
-    h.endsWith("lovableproject-dev.com")
-  );
+  try {
+    const h = window.location.hostname;
+    return (
+      window.self !== window.top ||
+      h.startsWith("id-preview--") ||
+      h.startsWith("preview--") ||
+      h.endsWith("lovableproject.com") ||
+      h.endsWith("lovableproject-dev.com")
+    );
+  } catch {
+    return false;
+  }
 }
 
 async function getWorker(): Promise<ServiceWorkerRegistration | null> {
@@ -103,7 +107,7 @@ export function AppExtras() {
         const at = times[key].getTime();
         const day = times[key].toDateString();
         const label = PRAYER_LABELS[key];
-        const clock = times[key].toLocaleTimeString([], { hour: "2-digit", minute: "2-digit" });
+        const clock = times[key].toLocaleTimeString(undefined, { hour: "2-digit", minute: "2-digit" });
         const before = `${day}-${key}-pre`;
         if (
           now >= at - REMINDER_MS &&

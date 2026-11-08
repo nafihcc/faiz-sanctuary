@@ -37,7 +37,7 @@ function NotFoundComponent() {
 }
 
 function ErrorComponent({ error, reset }: { error: unknown; reset: () => void }) {
-  console.error(error);
+  console.error("Root route error:", error);
   const router = useRouter();
   useEffect(() => {
     reportLovableError(error, { boundary: "tanstack_root_error_component" });
@@ -46,26 +46,35 @@ function ErrorComponent({ error, reset }: { error: unknown; reset: () => void })
   return (
     <div className="flex min-h-screen items-center justify-center bg-surface px-4">
       <div className="max-w-md text-center">
-        <h1 className="text-xl font-semibold tracking-tight text-deep">This page didn't load</h1>
+        <h1 className="text-xl font-semibold tracking-tight text-deep">Shareek · شَرِيك</h1>
         <p className="mt-2 text-sm text-deep/60">
-          Something went wrong on our end. You can try refreshing or head back home.
+          Updating your prayer sanctuary...
         </p>
         <div className="mt-6 flex flex-wrap justify-center gap-2">
           <button
             onClick={() => {
+              try {
+                localStorage.removeItem("shareek_view_mode");
+              } catch {}
               router.invalidate();
               reset();
             }}
-            className="inline-flex items-center justify-center rounded-xl bg-brand px-4 py-2 text-sm font-medium text-primary-foreground transition-colors hover:bg-deep"
+            className="inline-flex items-center justify-center rounded-xl bg-brand px-4 py-2 text-sm font-medium text-primary-foreground transition-colors hover:bg-deep cursor-pointer"
           >
             Try again
           </button>
-          <Link
-            to="/"
-            className="inline-flex items-center justify-center rounded-xl border border-hairline bg-panel/60 px-4 py-2 text-sm font-medium text-deep transition-colors hover:bg-mist"
+          <button
+            onClick={() => {
+              try {
+                localStorage.clear();
+                sessionStorage.clear();
+              } catch {}
+              window.location.reload();
+            }}
+            className="inline-flex items-center justify-center rounded-xl border border-hairline bg-panel/60 px-4 py-2 text-sm font-medium text-deep transition-colors hover:bg-mist cursor-pointer"
           >
-            Go home
-          </Link>
+            Reset Cache & Reload
+          </button>
         </div>
       </div>
     </div>
