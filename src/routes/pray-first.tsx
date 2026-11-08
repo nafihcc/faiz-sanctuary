@@ -27,6 +27,7 @@ import {
   ADHAN_OPTIONS,
 } from "@/data/prayFirst";
 import { KhushuuLockOverlay } from "@/components/KhushuuLockOverlay";
+import { AndroidPermissionsCard } from "@/components/AndroidPermissionsCard";
 import { PRAYER_ORDER, PRAYER_LABELS } from "@/lib/prayer-times";
 
 export const Route = createFileRoute("/pray-first")({
@@ -192,6 +193,11 @@ function PrayFirstPage() {
             <span>Test Shield Overlay</span>
           </button>
         </div>
+      </div>
+
+      {/* Android System Permissions & Background Service Setup */}
+      <div className="mt-8">
+        <AndroidPermissionsCard prayerName="Upcoming Salah" />
       </div>
 
       <div className="mt-8 grid lg:grid-cols-12 gap-8">

@@ -40,6 +40,7 @@ import {
   PRESET_APPS,
 } from "@/data/prayFirst";
 import { KhushuuLockOverlay } from "@/components/KhushuuLockOverlay";
+import { AndroidPermissionsCard } from "@/components/AndroidPermissionsCard";
 
 const PRAYER_ARABIC: Record<PrayerKey, string> = {
   fajr: "الفَجْر",
@@ -556,13 +557,18 @@ export function ExecutiveDashboard({ onOpenLocation }: { onOpenLocation: () => v
         </div>
       </section>
 
-      {/* 5. Native Android APK & Mobile Focus Banner */}
+      {/* 5. Android System Permissions & App Blocker Setup */}
+      <section className="space-y-3">
+        <AndroidPermissionsCard prayerName={next ? PRAYER_LABELS[next.key] : "Salah"} />
+      </section>
+
+      {/* 6. Native Android APK & Mobile Focus Banner */}
       <section className="glass-panel rounded-3xl p-6 sm:p-8 border border-hairline/80 shadow-xs bg-gradient-to-r from-panel via-panel to-brand/5">
         <div className="flex flex-col md:flex-row md:items-center justify-between gap-6">
           <div className="max-w-2xl">
             <div className="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-brand/10 text-brand text-xs font-mono font-semibold">
               <Smartphone className="size-3.5" />
-              <span>Native Android APK Package</span>
+              <span>Native Android APK Package · v1.0.0</span>
             </div>
             <h3 className="mt-3 text-2xl font-display font-semibold text-deep">
               Deploy Shareek natively on your Android device.
@@ -575,13 +581,12 @@ export function ExecutiveDashboard({ onOpenLocation }: { onOpenLocation: () => v
 
           <div className="flex flex-col sm:flex-row items-stretch sm:items-center gap-3 shrink-0">
             <a
-              href="https://github.com/nafihcc/faiz-sanctuary/actions"
-              target="_blank"
-              rel="noopener noreferrer"
+              href="https://github.com/nafihcc/faiz-sanctuary/releases/download/v1.0.0-apk/Shareek-App.apk"
+              download="Shareek-App.apk"
               className="inline-flex items-center justify-center gap-2 bg-brand text-primary-foreground text-xs font-semibold px-5 py-3 rounded-full shadow-md shadow-brand/20 hover:bg-deep transition cursor-pointer no-underline"
             >
               <Download className="size-4" />
-              <span>Download Shareek.apk</span>
+              <span>Download Shareek.apk (5.3 MB)</span>
             </a>
             <Link
               to="/pray-first"
