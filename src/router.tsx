@@ -9,6 +9,7 @@ export const getRouter = () => {
     routeTree,
     // BASE_URL is "/" locally and "/<repo-name>/" on GitHub Pages
     basepath: (import.meta.env.BASE_URL || "/").replace(/\/$/, "") || "/",
+    trailingSlash: "preserve",
     context: { queryClient },
     scrollRestoration: true,
     defaultPreloadStaleTime: 0,
